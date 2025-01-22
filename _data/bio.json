@@ -5,13 +5,13 @@
     "picture": "https://github.com/shadematsumoto.png",
     "email": "shadejm@hawaii.edu",
     "phone": "",
-    "website": "https://mmaluhia.github.io",
+    "website": "https://shadematsumoto.github.io",
     "summary": "I am currently studying Computer Science in the Department of Information and Computer Sciences at the University of Hawaii at Manoa, and I expect to graduate in Fall, 2027.",
     "location": { "address": "", "postalCode": "", "city": "Honolulu", "countryCode": "USA", "region": "Hawaii" },
     "profiles": [
       { "network": "github", "username": "shadematsumoto", "url": "https://github.com/shadematsumoto" },
       { "network": "linkedin", "username": "Shade Matsumoto", "url": "https://www.linkedin.com/in/shade-matsumoto-187738292" },
-      { "network": "email", "username": "shadejsm", "url": "shadejsm@gmail.com" }
+      { "network": "email", "username": "shadejsm", "url": "mailto:shadejsm@gmail.com" }
     ]
   },
   "interests": [
