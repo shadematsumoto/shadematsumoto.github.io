@@ -8,7 +8,7 @@ published: true
 labels:
   - Unix
   - C++
-summary: "I created a database of users with an interface from scratch using C++."
+summary: "I created a database with an command-line interface in C++."
 ---
 
 <div class="text-center p-4">
