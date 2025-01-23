@@ -7,7 +7,7 @@ date: 2024
 published: true
 labels:
   - Java
-summary: "A lookup dictionary of sayings in Olelo Hawaiian written in Java."
+summary: "I created a lookup dictionary of Olelo Hawaiian sayings in Java."
 ---
 
 <img class="img-fluid" src="../img/cotton/cotton-header.png">
