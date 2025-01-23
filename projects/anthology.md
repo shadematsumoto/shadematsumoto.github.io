@@ -7,7 +7,7 @@ date: 2024
 published: true
 labels:
   - Creative works
-summary: "A creative anthology of poetry and storytelling for ENG 100."
+summary: "I crafted a creative anthology of poetry and storytelling from ENG 100."
 ---
 
 <img class="img-fluid" src="../img/cotton/cotton-header.png">
