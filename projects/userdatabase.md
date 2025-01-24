@@ -1,7 +1,7 @@
 ---
 layout: project
 type: project
-image: img/micromouse/micromouse-square.jpg
+image: img/database-command-line.jpg
 title: "User Database"
 date: 2024
 published: true
@@ -12,27 +12,30 @@ summary: "I created a database with an command-line interface in C++."
 ---
 
 <div class="text-center p-4">
-  <img width="200px" src="../img/micromouse/micromouse-robot.png" class="img-thumbnail" >
-  <img width="200px" src="../img/micromouse/micromouse-robot-2.jpg" class="img-thumbnail" >
-  <img width="200px" src="../img/micromouse/micromouse-circuit.png" class="img-thumbnail" >
+  <img width="200px" src="../img/database-command-line.png" class="img-thumbnail" >
 </div>
 
-Micromouse is an event where small robot “mice” solve a 16 x 16 maze.  Events are held worldwide.  The maze is made up of a 16 by 16 gird of cells, each 180 mm square with walls 50 mm high.  The mice are completely autonomous robots that must find their way from a predetermined starting position to the central area of the maze unaided.  The mouse will need to keep track of where it is, discover walls as it explores, map out the maze and detect when it has reached the center.  having reached the center, the mouse will typically perform additional searches of the maze until it has found the most optimal route from the start to the center.  Once the most optimal route has been determined, the mouse will run that route in the shortest possible time.
+The Bank Database Management System is a C++ program designed to manage bank records through a user-friendly interface for ICS 212. It uses a linked list data structure to store and manipulate customer account data, including account numbers, names, and addresses. The system offers an interactive menu that allows users to add new records, print all records, find a specific record by account number, or delete a record from the database.
 
-For this project, I was the lead programmer who was responsible for programming the various capabilities of the mouse.  I started by programming the basics, such as sensor polling and motor actuation using interrupts.  From there, I then programmed the basic PD controls for the motors of the mouse.  The PD control the drive so that the mouse would stay centered while traversing the maze and keep the mouse driving straight.  I also programmed basic algorithms used to solve the maze such as a right wall hugger and a left wall hugger algorithm.  From there I worked on a flood-fill algorithm to help the mouse track where it is in the maze, and to map the route it takes.  We finished with the fastest mouse who finished the maze within our college.
+This program has practical use of linked lists in C++ for managing dynamic data, with additional functionality for reading from and writing to a file to preserve records between sessions. The user interface guides the user through data entry and ensures proper input validation. The system can be extended for further functionality, such as updating records or adding more complex data management features.
 
-Here is some code that illustrates how we read values from the line sensors:
+Here is some code that shows an integral function to read and translate the account number:
 
 ```cpp
-byte ADCRead(byte ch)
+void getAccountNum(int &uaccountno)
 {
-    word value;
-    ADC1SC1 = ch;
-    while (ADC1SC1_COCO != 1)
-    {   // wait until ADC conversion is completed   
+    cout << "\nEnter account number: ";
+
+    cin >> uaccountno;
+    while (cin.fail() || uaccountno <= 0)
+    {
+        cin.clear();
+        cin.ignore(10000, '\n'); /* Clear buffer */
+        cout << "Invalid input. Please enter a positive integer: ";
+        cin >> uaccountno;
     }
-    return ADC1RL;  // lower 8-bit value out of 10-bit data from the ADC
+    cin.ignore(10000, '\n'); /* Clear buffer */
 }
 ```
 
-You can learn more at the [UH Micromouse News Announcement](https://manoa.hawaii.edu/news/article.php?aId=2857).
+You can view the document source code of the project [here](https://docs.google.com/document/d/15agaGHag4TF66nvZ1ZafPZ7zyoVoPZS2BSuHCRwvMm0/edit?usp=sharing).
