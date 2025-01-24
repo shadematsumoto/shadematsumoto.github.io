@@ -1,7 +1,7 @@
 ---
 layout: project
 type: project
-image: img/anthology-title.png
+image: img/anthology-cover.png
 title: "Anthology"
 date: 2024
 published: true
@@ -10,7 +10,7 @@ labels:
 summary: "I crafted a creative anthology of poetry and storytelling from ENG 100."
 ---
 
-<img class="img-fluid" src="../img/anthology-title.png">
+<img class="img-fluid" src="../img/anthology-cover.png">
 
 This anthology is a blend of introspection and storytelling, with each piece representing a step toward understanding deeper truths about the author’s identity and relationships. Themes of memory, pride, solitude, and the search for meaning are woven throughout, all while acknowledging the process of letting go and finding strength in the shadows.
 
