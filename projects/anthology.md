@@ -1,7 +1,7 @@
 ---
 layout: project
 type: project
-image: img/cotton/cotton-square.png
+image: img/anthology-title.png
 title: "Anthology"
 date: 2024
 published: true
@@ -10,7 +10,7 @@ labels:
 summary: "I crafted a creative anthology of poetry and storytelling from ENG 100."
 ---
 
-<img class="img-fluid" src="../img/cotton/cotton-header.png">
+<img class="img-fluid" src="../img/anthology-title.png">
 
 This anthology is a blend of introspection and storytelling, with each piece representing a step toward understanding deeper truths about the author’s identity and relationships. Themes of memory, pride, solitude, and the search for meaning are woven throughout, all while acknowledging the process of letting go and finding strength in the shadows.
 
@@ -29,4 +29,4 @@ And as I step forward, I will keep writing, not to find you, nor to define mysel
 
 <hr>
 
-Source: <a href="https://github.com/jogarces/ics-313-text-game"><i class="large github icon "></i>jogarces/ics-313-text-game</a>
+Source: <a href="https://docs.google.com/document/d/1FVC8gI6gV6uM5FcepadpXrOjdF-7pNss2SuGmziMVac/edit?tab=t.6vekj7lm2e6k"><i class="large github icon "></i>jogarces/ics-313-text-game</a>
