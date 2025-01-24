@@ -11,7 +11,7 @@ labels:
   - Learning
 ---
 
-<img width="200px" class="rounded float-start pe-4" src="../img/typescript-logo">
+<img width="200px" class="rounded float-start pe-4" src="../img/typescript-logo.png">
 
 *Javascript's Younger Cousin: Typescript*
 
