@@ -12,45 +12,19 @@ summary: "I crafted a creative anthology of poetry and storytelling from ENG 100
 
 <img class="img-fluid" src="../img/cotton/cotton-header.png">
 
-Cotton is a horror-style text-based adventure game I developed using the functions and macros built from The Wizard's Game in [Conrad Barski's Land of Lisp](http://landoflisp.com/). Slightly more interesting and convoluted! (It is not that scary.)
+This anthology is a blend of introspection and storytelling, with each piece representing a step toward understanding deeper truths about the author’s identity and relationships. Themes of memory, pride, solitude, and the search for meaning are woven throughout, all while acknowledging the process of letting go and finding strength in the shadows.
 
-To give you a flavor of the game, here is an excerpt from one run:
+The anthology begins with a literary mission statement that sets the stage for my exploration of self-expression through writing. The project culminates in a resolution that reflects a journey from reliance on external influences (symbolized by "Sky") to finding personal strength and understanding. Through this process, the writer’s skills as a storyteller and their ability to reflect on complex emotional experiences are fully realized.
 
+This collection is a testament to my evolution as a writer—learning to shape my own narratives, confront my past, and move forward with clarity and purpose.
+
+Here is an excerpt from the anthology:
 <hr>
 
 <pre>
-You open your eyes, and you are greeted by an unfamiliar ceiling.
-Startled, you get to your feet and quickly scan your surroundings. It's
-dark except for the stream of light coming from a crack on the only boarded
-window in the room. You try to peek through the crack, but you cannot see
-anything. You wonder where you are and who could have possibly brought you here.
+So, here is my conclusion, my resolution: I am Shade, no longer chasing light but embracing the twilight, where the past meets the present, and the unknown beckons. I carry my own strength, my own stories, and my own hope. Sky, thank you for the light, for the lessons, and for showing me what it means to be me. You were the sun that set my journey in motion, and I was the moon, reflecting your glow. Now, the sun has risen elsewhere, and I walk beneath the stars.
 
-<--------------------help------------------------>
-Enter quit or one of the following commands -
-Weld light look walk pickup inventory help h ?
-<------------------------------------------------>
-
-look
-The room is a picture of decay with only a faded number identifying it as room-4. The bed you were
- lying on is stained with what looks like dried blood. Could it be your blood? No - it is not. The
- only way out of the room aside from the door to the corridor is a window that is boarded shut. It
- looks like it has been like that for decades. There is a door going west from here. You see a candle
- on the floor. You see a match on the floor.
-
-pickup candle
-- you are now carrying the candle -
-
-pickup match
-- you are now carrying the match -
-
-light match candle
-
-The candle is now lit. It illuminates everything in the room.
-
-walk west
-The corridor is lit with the candle. It is so long that you cannot see to the end. You notice that
- there are words written on the wall. There is a door going east from here. There is a way going north
- from here. There is a door going south from here.
+And as I step forward, I will keep writing, not to find you, nor to define myself against you. I will write because this is who I am. It is how I shine.
 </pre>
 
 <hr>
