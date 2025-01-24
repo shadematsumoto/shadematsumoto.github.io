@@ -27,4 +27,4 @@ And as I step forward, I will keep writing, not to find you, nor to define mysel
 
 <hr>
 
-Source: <a href="https://docs.google.com/document/d/1FVC8gI6gV6uM5FcepadpXrOjdF-7pNss2SuGmziMVac/edit?tab=t.6vekj7lm2e6k"><i class="large github icon "></i>jogarces/ics-313-text-game</a>
+Source: <a href="https://docs.google.com/document/d/1FVC8gI6gV6uM5FcepadpXrOjdF-7pNss2SuGmziMVac/edit?tab=t.6vekj7lm2e6k"><i class="large github icon "></i>shadematsumoto/anthology</a>
