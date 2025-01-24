@@ -1,7 +1,7 @@
 ---
 layout: project
 type: project
-image: img/database-command-line.jpg
+image: img/database-command-line.png
 title: "User Database"
 date: 2024
 published: true
