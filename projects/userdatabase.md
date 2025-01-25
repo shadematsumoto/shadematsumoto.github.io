@@ -6,8 +6,8 @@ title: "User Database"
 date: 2024
 published: true
 labels:
-  - Unix
   - C++
+  - Data structures
 summary: "I created a database with an command-line interface in C++."
 ---
 
