@@ -7,6 +7,7 @@ date: 2024
 published: true
 labels:
   - Java
+  - Data structures
 summary: "I created a lookup dictionary of Olelo Hawaiian sayings in Java."
 ---
 
