@@ -21,9 +21,9 @@ This collection is a testament to my evolution as a writer—learning to shape m
 Here is an excerpt from the anthology:
 <hr>
 
-So, here is my conclusion, my resolution: I am Shade, no longer chasing light but embracing the twilight, where the past meets the present, and the unknown beckons. I carry my own strength, my own stories, and my own hope. Sky, thank you for the light, for the lessons, and for showing me what it means to be me. You were the sun that set my journey in motion, and I was the moon, reflecting your glow. Now, the sun has risen elsewhere, and I walk beneath the stars.
+*So, here is my conclusion, my resolution: I am Shade, no longer chasing light but embracing the twilight, where the past meets the present, and the unknown beckons. I carry my own strength, my own stories, and my own hope. Sky, thank you for the light, for the lessons, and for showing me what it means to be me. You were the sun that set my journey in motion, and I was the moon, reflecting your glow. Now, the sun has risen elsewhere, and I walk beneath the stars.*
 
-And as I step forward, I will keep writing, not to find you, nor to define myself against you. I will write because this is who I am. It is how I shine.
+*And as I step forward, I will keep writing, not to find you, nor to define myself against you. I will write because this is who I am. It is how I shine.*
 
 <hr>
 
