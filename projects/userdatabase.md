@@ -19,6 +19,8 @@ The Bank Database Management System is a C++ program designed to manage bank rec
 
 This program has practical use of linked lists in C++ for managing dynamic data, with additional functionality for reading from and writing to a file to preserve records between sessions. The user interface guides the user through data entry and ensures proper input validation. The system can be extended for further functionality, such as updating records or adding more complex data management features.
 
+The code was fully written by me, as it was a solo project. I learned a lot about how to design the data structure within the code for it to be easily used by others if they were to implement my source code into another project. This was done by clear syntax and make-files that would allow new users to implement and debug.
+
 Here is some code that shows an integral function to read and translate the account number:
 
 ```cpp
