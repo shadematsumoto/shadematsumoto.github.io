@@ -28,3 +28,9 @@ Here is an excerpt from the anthology:
 <hr>
 
 Source: <a href="https://docs.google.com/document/d/1FVC8gI6gV6uM5FcepadpXrOjdF-7pNss2SuGmziMVac/edit?tab=t.6vekj7lm2e6k"><i class="large github icon "></i>Anthology Document</a>
+
+<object data="https://drive.google.com/file/d/1l1gKiwOryMpdj_GY0aBCNQYb2KaOXlH0/view?usp=sharing" type="application/pdf" width="700px" height="700px">
+    <embed src="https://drive.google.com/file/d/1l1gKiwOryMpdj_GY0aBCNQYb2KaOXlH0/view?usp=sharing">
+        <p>This browser does not support PDFs. Please download the PDF to view it: <a href="https://drive.google.com/file/d/1l1gKiwOryMpdj_GY0aBCNQYb2KaOXlH0/view?usp=sharing">Download PDF</a>.</p>
+    </embed>
+</object>
