@@ -16,4 +16,4 @@ The Olelo Dictionary project is a Java implementation of a dictionary that store
 
 In addition to basic search features, the dictionary offers specialized methods to search for sayings containing specific Hawaiian words or English keywords. This project showcases the application of advanced data structures to improve performance in handling language-specific data, and also serves as a tool for learning about Hawaiian culture and language.
 
-Source: <a href="https://github.com/shadematsumoto/Olelo-Dictionary"><i class="large github icon "></i>Olelo Dictionary Code Document</a>
+Source: <a href="https://github.com/shadematsumoto/Olelo-Dictionary"><i class="large github icon "></i>Olelo Dictionary</a>
