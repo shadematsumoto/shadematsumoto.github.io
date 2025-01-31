@@ -24,37 +24,97 @@ With millions of questions on Stack Overflow, it’s likely that someone has alr
 
 ### Example: A Well-Structured Question
 
-Consider the following Stack Overflow question about deep merging objects in JavaScript:
+Consider the following [Stack Overflow question](https://stackoverflow.com/questions/27936772/how-to-deep-merge-instead-of-shallow-merge) about deep merging objects in JavaScript:
 
-> "Both `Object.assign` and object spread only perform a shallow merge. Is there a way to do a deep merge instead?"
+> Both Object.assign and Object spread only do a shallow merge.
+>
+> An example of the problem:
+>
+> ```
+> // No object nesting
+> const x = { a: 1 }
+> const y = { b: 1 }
+> const z = { ...x, ...y } // { a: 1, b: 1 }
+> ```
+> 
+> The output is what you'd expect. However if I try this:
+>
+> ```
+> // Object nesting
+> const x = { a: { a: 1 } }
+> const y = { a: { b: 1 } }
+> const z = { ...x, ...y } // { a: { b: 1 } }
+> ```
+> 
+> Instead of
+>
+> ```
+> { a: { a: 1, b: 1 } }
+> ```
+> 
+> you get
+>
+> ```
+> { a: { b: 1 } }
+> ```
+> 
+> x is completely overwritten because the spread syntax only goes one level deep. This is the same with Object.assign().
+>
+> Is there a way to do this?
 
 This question is effective because it clearly states the problem, provides a minimal reproducible example, and demonstrates prior research. The asker understands the limitations of `Object.assign` and spread syntax but seeks a deeper solution. 
 
-The [top-rated answer](https://stackoverflow.com/questions/27936772/how-to-deep-merge-instead-of-shallow-merge) offers a well-documented ES6 solution using recursion:
+The top-rated answer offers a well-documented ES6 solution using recursion:
 
-```javascript
-export function isObject(item) {
-  return item && typeof item === 'object' && !Array.isArray(item);
-}
-
-export function mergeDeep(target, ...sources) {
-  if (!sources.length) return target;
-  const source = sources.shift();
-
-  if (isObject(target) && isObject(source)) {
-    for (const key in source) {
-      if (isObject(source[key])) {
-        if (!target[key]) Object.assign(target, { [key]: {} });
-        mergeDeep(target[key], source[key]);
-      } else {
-        Object.assign(target, { [key]: source[key] });
-      }
-    }
-  }
-
-  return mergeDeep(target, ...sources);
-}
-```
+> I know this is a bit of an old issue but the easiest solution in ES2015/ES6 I could come up with was actually quite simple, using Object.assign(),
+>
+> Hopefully this helps:
+> 
+> ```
+> /**
+>  * Simple object check.
+>  * @param item
+>  * @returns {boolean}
+>  */
+> export function isObject(item) {
+>   return (item && typeof item === 'object' && !Array.isArray(item));
+> }
+>
+> /**
+>  * Deep merge two objects.
+>  * @param target
+>  * @param ...sources
+>  */
+> export function mergeDeep(target, ...sources) {
+>   if (!sources.length) return target;
+>   const source = sources.shift();
+>
+>   if (isObject(target) && isObject(source)) {
+>     for (const key in source) {
+>       if (isObject(source[key])) {
+>         if (!target[key]) Object.assign(target, { [key]: {} });
+>         mergeDeep(target[key], source[key]);
+>       } else {
+>         Object.assign(target, { [key]: source[key] });
+>       }
+>     }
+>   }
+>
+>   return mergeDeep(target, ...sources);
+> }
+> ```
+> 
+> Example usage:
+> 
+> ```
+> mergeDeep(this, { a: { b: { c: 123 } } });
+> // or
+> const merged = mergeDeep({a: 1}, { b : { c: { d: { e: 12345}}}});  
+> console.dir(merged); // { a: 1, b: { c: { d: [Object] } } }
+> You'll find an immutable version of this in the answer below.
+> ```
+> 
+> Note that this will lead to infinite recursion on circular references. There's some great answers on here on how to detect circular references if you think you'd face this issue.
 
 This response is valuable because it is written in pure JavaScript (without dependencies) and remains relevant despite its age. However, with modern AI tools available, one could argue that even well-structured questions like this may not always be necessary, as AI can often generate solutions instantly.
 
@@ -62,19 +122,20 @@ This response is valuable because it is written in pure JavaScript (without depe
 
 While research is crucial, there are cases where asking a well-formed question is unavoidable. However, some questions demonstrate a lack of preliminary research. Consider this Stack Overflow post:
 
-```
-How can one send an email to 100,000 users on a weekly basis in PHP? This includes mail to subscribers using the following providers:
+> How can one send an email to 100,000 users on a weekly basis in PHP? This includes mail to subscribers using the following providers:
+> 
+> * AOL
+> * G-Mail
+> * Hotmail
+> * Yahoo
+> 
+> It is important that all e-mail actually be delivered, to the extent that it is possible. Obviously, just sending the mail conventionally would do nothing but create problems.
+> 
+> Is there a library for PHP that makes this simpler?
 
-AOL
-G-Mail
-Hotmail
-Yahoo
-It is important that all e-mail actually be delivered, to the extent that it is possible. Obviously, just sending the mail conventionally would do nothing but create problems.
+The [question](https://stackoverflow.com/questions/3905734/how-to-send-100-000-emails-weekly) asks for a method to send mass emails while ensuring deliverability. Although this is a unique and ambitious request, the asker did not conduct basic research on email infrastructure. A simple Google search would reveal that handling mass email campaigns requires dedicated services like SendGrid or Amazon SES. While a user did offer a hypothetical solution, the best advice was ultimately to outsource the task to a specialized service. Here is the answer as a reference that gave a very short real answer, expected for the question (although it was followed up with an extensive possibility of an absurd option):
 
-Is there a library for PHP that makes this simpler?
-```
-
-The [question](https://stackoverflow.com/questions/3905734/how-to-send-100-000-emails-weekly) asks for a method to send mass emails while ensuring deliverability. Although this is a unique and ambitious request, the asker did not conduct basic research on email infrastructure. A simple Google search would reveal that handling mass email campaigns requires dedicated services like SendGrid or Amazon SES. While a user did offer a hypothetical solution, the best advice was ultimately to outsource the task to a specialized service.
+> Short answer: While it's technically possible to send 100k e-mails each week yourself, the simplest, easiest and cheapest solution is to outsource this to one of the companies that specialize in it (I did say "cheapest": there's no limit to the amount of development time (and therefore money) that you can sink into this when trying to DIY).
 
 ## Conclusion
 
