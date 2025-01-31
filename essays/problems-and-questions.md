@@ -10,7 +10,7 @@ labels:
   - StackOverflow
 ---
 
-![RTFM](../img/smart-questions/rtfm.png)
+![RTFM](../img/question-cat.jpg)
 
 ## You Experience a Problem...
 
