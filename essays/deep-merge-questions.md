@@ -2,7 +2,6 @@
 layout: essay
 type: essay
 title: "Smart Questions, Good Answers"
-# All dates must be YYYY-MM-DD format!
 date: 2025-01-30
 published: false
 labels:
@@ -11,91 +10,78 @@ labels:
   - StackOverflow
 ---
 
-<img width="300px" class="rounded float-start pe-4" src="../img/smart-questions/rtfm.png">
+![RTFM](../img/smart-questions/rtfm.png)
 
-Source: <a href="https://stackoverflow.com/questions/27936772/how-to-deep-merge-instead-of-shallow-merge"><i class="large github icon "></i>How to deep merge instead of shallow merge?</a>
+## You Experience a Problem...
 
-## Is there such thing as a stupid question?
+When faced with a problem, what is the first question that comes to mind? There are many ways to solve an issue, but the way you seek an answer matters just as much as the question itself. Eric Steven Raymond and Rick Moen explore this concept in their classic article, ["How To Ask Questions The Smart Way."](http://www.catb.org/~esr/faqs/smart-questions.html) They discuss the best ways to seek help and the steps you should take before reaching out to others.
 
-I’ve had instructors address a whole class and say, “There’s no such thing as a stupid question.” I now know that is in fact not true because I’ve challenged the statement and received the appropriate dumb-stricken, annoyed look. There are definitely stupid questions, and along with that, usually unhelpful answers. Though we all might be guilty of being callous and making people victim to our poorly formed questions, there are steps we can take to ask smarter questions that hopefully don’t illicit the dreaded “rtfm” or “stfw” response.
+Initially, I agreed with their points, but reflecting on my experiences with programming and research, I began to question: *Why am I asking this question to others?* While the world is full of brilliant minds, we also have access to a vast network of knowledge—the internet. Almost every problem has been encountered before. Stack Overflow is an essential database of past information, but it may not always be the best resource for modern questions.
 
-## What’s a smart question?
+## The Importance of Research
 
-Stack Overflow, a question and answer site for programmers, is a great resource for anyone who may have issues with code or who may simply want to learn new or different methods of doing something. There I found examples of good questions and bad questions, which could probably be improved.
+With millions of questions on Stack Overflow, it’s likely that someone has already asked the same question you have. In the early days of online forums, asking new questions was necessary because certain issues had not yet been addressed. However, after two decades of accumulated knowledge, the likelihood of finding an existing solution has increased significantly. Taking the time to research thoroughly before asking a question benefits both you and the larger programming community by preventing redundant inquiries.
 
-In the following example, we examine the components of a decent question. In this case, the asker is trying to figure out a way to get the date of the previous month in Python.
+### Example: A Well-Structured Question
 
-```
-Q: python date of the previous month
+Consider the following Stack Overflow question about deep merging objects in JavaScript:
 
-I am trying to get the date of the previous month with python. Here is what i've tried:
+> "Both `Object.assign` and object spread only perform a shallow merge. Is there a way to do a deep merge instead?"
 
-str( time.strftime('%Y') ) + str( int(time.strftime('%m'))-1 )
+This question is effective because it clearly states the problem, provides a minimal reproducible example, and demonstrates prior research. The asker understands the limitations of `Object.assign` and spread syntax but seeks a deeper solution. 
 
-However, this way is bad for 2 reasons: First it returns 20122 for the February of 2012 (instead of 201202) 
-and secondly it will return 0 instead of 12 on January.
+The [top-rated answer](https://stackoverflow.com/questions/27936772/how-to-deep-merge-instead-of-shallow-merge) offers a well-documented ES6 solution using recursion:
 
-I have solved this trouble in bash with:
+```javascript
+export function isObject(item) {
+  return item && typeof item === 'object' && !Array.isArray(item);
+}
 
-echo $(date -d"3 month ago" "+%G%m%d")
+export function mergeDeep(target, ...sources) {
+  if (!sources.length) return target;
+  const source = sources.shift();
 
-I think that if bash has a built-in way for this purpose, then python, much more equipped, should provide something 
-better than forcing writing one's own script to achieve this goal. Of course i could do something like:
+  if (isObject(target) && isObject(source)) {
+    for (const key in source) {
+      if (isObject(source[key])) {
+        if (!target[key]) Object.assign(target, { [key]: {} });
+        mergeDeep(target[key], source[key]);
+      } else {
+        Object.assign(target, { [key]: source[key] });
+      }
+    }
+  }
 
-if int(time.strftime('%m')) == 1:
-    return '12'
-else:
-    if int(time.strftime('%m')) < 10:
-        return '0'+str(time.strftime('%m')-1)
-    else:
-        return str(time.strftime('%m') -1)
-        
-I have not tested this code and i don't want to use it anyway (unless I can't find any other way:/)
-
-Thanks for your help!
-```
-
-While the heading of his question could be better, it does convey what he’s trying to figure out. Usually something as brief as “python date of previous month” is what other users would enter in as search terms on Google, making it easily found. Another good thing about the question is that it’s not just a question. The asker shows what he or she has done and that he or she has put in some effort to answer the question. And while it may not be as important as the question itself, the asker shows courtesy, which does increase the chance of getting an answer.
-
-```
-A: datetime and the datetime.timedelta classes are your friend.
-
-1. find today
-2. use that to find the first day of this month.
-3. use timedelta to backup a single day, to the last day of the previous month.
-4. print the YYYYMM string you're looking for.
-
-Like this:
-
- >>> import datetime
- >>> today = datetime.date.today()
- >>> first = datetime.date(day=1, month=today.month, year=today.year)
- >>> lastMonth = first - datetime.timedelta(days=1)
- >>> print lastMonth.strftime("%Y%m")
- 201202
- >>>
-
-```
- 
-The asker received six possible answers, and he or she was successful in inciting discussion from multiple users. The answers themselves were clear and were devoid of the rumored sarcasm and hostility of “hackers.” Since I myself have referenced this page and found it useful, I can confidently say that it is a good question.
-
-## The foolproof way to get ignored.
-
-While there are decent questions that benefit everyone, there are those one can ask to create an entirely different effect. In the following example, a user asks how he would, in short, create a desktop application with Facebook.
-
-```
-Q: Facebook Desktop Notifier
-
-I am a beginner programmer that have never used anything other than what's included in a language.
-
-I am trying to create a desktop application that notifies me anytime I get an update onfacebook. 
-How should go about doing this? Thanks in advance.
-
-edit Sorry I was not clear. Is there any way to make a DESKTOP application with facebook?
+  return mergeDeep(target, ...sources);
+}
 ```
 
-A simple “yes” would have answered the question, but we know that’s not the sort of answer he or she is looking for. Fortunately, someone kindly responded with a link to Facebook’s developer website. The asker should have done more research on his or her potential project. Then further down the road, he or she could have asked more specific and detailed questions that wouldn’t require a thousand-paged response for a sufficient answer.
+This response is valuable because it is written in pure JavaScript (without dependencies) and remains relevant despite its age. However, with modern AI tools available, one could argue that even well-structured questions like this may not always be necessary, as AI can often generate solutions instantly.
+
+## When Good Questions Are Essential
+
+While research is crucial, there are cases where asking a well-formed question is unavoidable. However, some questions demonstrate a lack of preliminary research. Consider this Stack Overflow post:
+
+```
+How can one send an email to 100,000 users on a weekly basis in PHP? This includes mail to subscribers using the following providers:
+
+AOL
+G-Mail
+Hotmail
+Yahoo
+It is important that all e-mail actually be delivered, to the extent that it is possible. Obviously, just sending the mail conventionally would do nothing but create problems.
+
+Is there a library for PHP that makes this simpler?
+```
+
+The [question](https://stackoverflow.com/questions/3905734/how-to-send-100-000-emails-weekly) asks for a method to send mass emails while ensuring deliverability. Although this is a unique and ambitious request, the asker did not conduct basic research on email infrastructure. A simple Google search would reveal that handling mass email campaigns requires dedicated services like SendGrid or Amazon SES. While a user did offer a hypothetical solution, the best advice was ultimately to outsource the task to a specialized service.
 
 ## Conclusion
 
-When we rely on others’ generosity and expertise to provide answers to our questions, it should hold that the question we ask should be one that leads to efficient and effective help that not only benefits us, but also the people we ask and others who might ask the same question in the future. Thus, if you have a question… make it a smart one! Asking questions may not always get you the best answer, but asking them in a way that will make others want to answer them will increase the success of finding a good solution and make it a positive experience on all sides.
+The modern era is defined by vast, well-documented knowledge available on the internet. With the rise of AI and search engines, the way we approach questions and answers has changed significantly. Before posting on forums like Stack Overflow, take the time to research thoroughly—chances are, your question has already been answered. This not only improves your own problem-solving skills but also helps maintain the quality of online communities.
+
+That said, asking questions remains an important skill. The key is to ask *new* and *thoughtful* questions that genuinely contribute to the conversation. If a question has already been answered well, there's no need to ask it again—just find and use the existing information. And when in doubt, tools like ChatGPT can serve as an excellent resource for general knowledge and troubleshooting. 
+
+So, before you ask, research. And if you must ask, make it a great question.
+
+*This essay used ChatGPT to suggest Markdown applications and polishing.*
