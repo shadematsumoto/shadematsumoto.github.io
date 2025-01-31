@@ -3,7 +3,7 @@ layout: essay
 type: essay
 title: "Smart Questions, Good Answers"
 date: 2025-01-30
-published: false
+published: true
 labels:
   - Good Questions
   - Good Answers
