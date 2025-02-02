@@ -11,12 +11,12 @@ labels:
 summary: "I created a lookup dictionary of Olelo Hawaiian sayings in Java."
 ---
 
-<img class="img-fluid" src="../img/dictionary-command-line.png">
+![Dictionary Command Line](../img/dictionary-command-line.png)
 
-The Olelo Dictionary project is a Java implementation of a dictionary that stores Hawaiian sayings and their English translations made for ICS 311 class. My project utilizes a Red-Black Tree data structure to efficiently manage and search the sayings based on their Hawaiian or English content. It allows for quick access to sayings, their meanings, and provides functionality for finding sayings before or after a given entry in the dictionary.
+The ʻŌlelo Dictionary Project is a Java-based implementation of a dictionary designed for the ICS 311 class. It stores Hawaiian sayings alongside their English translations, utilizing a Red-Black Tree data structure to efficiently manage and search entries based on either Hawaiian or English content. This ensures quick access to sayings, their meanings, and allows users to find entries before or after a given term in the dictionary.
 
-In addition to basic search features, the dictionary offers specialized methods to search for sayings containing specific Hawaiian words or English keywords. This project showcases the application of advanced data structures to improve performance in handling language-specific data, and also serves as a tool for learning about Hawaiian culture and language.
+Beyond basic search functionality, the dictionary includes specialized methods to search for sayings containing specific Hawaiian words or English keywords, enhancing usability for those exploring the language. This project not only demonstrates the application of advanced data structures to optimize performance but also serves as a meaningful tool for learning about Hawaiian culture and language.
 
-Throughout this project, I worked with a partner for the project. I was in charge of creating the entire source code for him to reflect and explain the program in the project's essay. This meant I needed to make my code clear to read and understand. To do this, I ensured my code was clearly separated and utilized clear variables in order for my partner to follow along with the code. Overall, the collaboration was seemless as a final checkup was all that was needed to ensure both sides of the project looked clean and ready to submit.
+For this project, I collaborated with a partner. My primary responsibility was developing the entire source code, ensuring it was clear, well-structured, and easy to understand so my partner could effectively reflect on and explain the program in the accompanying essay. To achieve this, I maintained clean code organization, used descriptive variable names, and structured the project in a way that made it easy to follow. Our collaboration was seamless, requiring only a final review to ensure both the implementation and documentation were polished and ready for submission.
 
-Source: <a href="https://github.com/shadematsumoto/Olelo-Dictionary"><i class="large github icon "></i>Olelo Dictionary</a>
+Source: [Olelo Dictionary](https://github.com/shadematsumoto/Olelo-Dictionary)

@@ -10,7 +10,7 @@ labels:
   - Past & Future
 ---
 
-<img width="200px" class="rounded float-start pe-4" src="../img/scratch-logo.png">
+![Scratch Logo](../img/scratch-logo.png)
 
 *Software engineering: a craft where creativity meets logic and determination.*
 
@@ -24,4 +24,4 @@ Looking ahead, I am eager to deepen my expertise in areas like optimization tech
 
 In the future, I aim to cultivate a blend of technical and soft skills that will enable me to thrive in collaborative, multidisciplinary environments. Additionally, I hope to explore more advanced topics in robotics to enhance the real-world applicability of my work. By continuously building on my foundation in programming, mathematics, and problem-solving, I aspire to make meaningful contributions to the field of software engineering, particularly in projects that require innovation and interdisciplinary collaboration.
 
-*ChatGPT used for grammar and word choice*
+*This essay was grammar checked by ChatGPT.*

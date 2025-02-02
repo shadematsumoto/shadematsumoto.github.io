@@ -12,7 +12,7 @@ labels:
 
 ![RTFM](../img/question-cat.jpg)
 
-## You Experience a Problem...
+## You Experience a Problem
 
 When faced with a problem, what is the first question that comes to mind? There are many ways to solve an issue, but the way you seek an answer matters just as much as the question itself. Eric Steven Raymond and Rick Moen explore this concept in their classic article, ["How To Ask Questions The Smart Way."](http://www.catb.org/~esr/faqs/smart-questions.html) They discuss the best ways to seek help and the steps you should take before reaching out to others.
 
@@ -30,47 +30,47 @@ Consider the following [Stack Overflow question](https://stackoverflow.com/quest
 >
 > An example of the problem:
 >
-> ```
+> ```js
 > // No object nesting
 > const x = { a: 1 }
 > const y = { b: 1 }
 > const z = { ...x, ...y } // { a: 1, b: 1 }
 > ```
-> 
+>
 > The output is what you'd expect. However if I try this:
 >
-> ```
+> ```js
 > // Object nesting
 > const x = { a: { a: 1 } }
 > const y = { a: { b: 1 } }
 > const z = { ...x, ...y } // { a: { b: 1 } }
 > ```
-> 
+>
 > Instead of
 >
-> ```
+> ```js
 > { a: { a: 1, b: 1 } }
 > ```
-> 
+>
 > you get
 >
-> ```
+> ```js
 > { a: { b: 1 } }
 > ```
-> 
+>
 > x is completely overwritten because the spread syntax only goes one level deep. This is the same with Object.assign().
 >
 > Is there a way to do this?
 
-This question is effective because it clearly states the problem, provides a minimal reproducible example, and demonstrates prior research. The asker understands the limitations of `Object.assign` and spread syntax but seeks a deeper solution. 
+This question is effective because it clearly states the problem, provides a minimal reproducible example, and demonstrates prior research. The asker understands the limitations of `Object.assign` and spread syntax but seeks a deeper solution.
 
 The top-rated answer offers a well-documented ES6 solution using recursion:
 
 > I know this is a bit of an old issue but the easiest solution in ES2015/ES6 I could come up with was actually quite simple, using Object.assign(),
 >
 > Hopefully this helps:
-> 
-> ```
+>
+> ```js
 > /**
 >  * Simple object check.
 >  * @param item
@@ -103,17 +103,17 @@ The top-rated answer offers a well-documented ES6 solution using recursion:
 >   return mergeDeep(target, ...sources);
 > }
 > ```
-> 
+>
 > Example usage:
-> 
-> ```
+>
+> ```js
 > mergeDeep(this, { a: { b: { c: 123 } } });
 > // or
 > const merged = mergeDeep({a: 1}, { b : { c: { d: { e: 12345}}}});  
 > console.dir(merged); // { a: 1, b: { c: { d: [Object] } } }
 > You'll find an immutable version of this in the answer below.
 > ```
-> 
+>
 > Note that this will lead to infinite recursion on circular references. There's some great answers on here on how to detect circular references if you think you'd face this issue.
 
 This response is valuable because it is written in pure JavaScript (without dependencies) and remains relevant despite its age. However, with modern AI tools available, one could argue that even well-structured questions like this may not always be necessary, as AI can often generate solutions instantly.
@@ -123,14 +123,14 @@ This response is valuable because it is written in pure JavaScript (without depe
 While research is crucial, there are cases where asking a well-formed question is unavoidable. However, some questions demonstrate a lack of preliminary research. Consider this Stack Overflow post:
 
 > How can one send an email to 100,000 users on a weekly basis in PHP? This includes mail to subscribers using the following providers:
-> 
+>
 > * AOL
 > * G-Mail
 > * Hotmail
 > * Yahoo
-> 
+>
 > It is important that all e-mail actually be delivered, to the extent that it is possible. Obviously, just sending the mail conventionally would do nothing but create problems.
-> 
+>
 > Is there a library for PHP that makes this simpler?
 
 The [question](https://stackoverflow.com/questions/3905734/how-to-send-100-000-emails-weekly) asks for a method to send mass emails while ensuring deliverability. Although this is a unique and ambitious request, the asker did not conduct basic research on email infrastructure. A simple Google search would reveal that handling mass email campaigns requires dedicated services like SendGrid or Amazon SES. While a user did offer a hypothetical solution, the best advice was ultimately to outsource the task to a specialized service. Here is the answer as a reference that gave a very short real answer, expected for the question (although it was followed up with an extensive possibility of an absurd option):
@@ -141,8 +141,8 @@ The [question](https://stackoverflow.com/questions/3905734/how-to-send-100-000-e
 
 The modern era is defined by vast, well-documented knowledge available on the internet. With the rise of AI and search engines, the way we approach questions and answers has changed significantly. Before posting on forums like Stack Overflow, take the time to research thoroughly, chances are, your question has already been answered. This not only improves your own problem-solving skills but also helps maintain the quality of online communities.
 
-That said, asking questions remains an important skill. The key is to ask *new* and *thoughtful* questions that genuinely contribute to the conversation. If a question has already been answered well, there's no need to ask it again—just find and use the existing information. And when in doubt, tools like ChatGPT can serve as an excellent resource for general knowledge and troubleshooting. 
+That said, asking questions remains an important skill. The key is to ask *new* and *thoughtful* questions that genuinely contribute to the conversation. If a question has already been answered well, there's no need to ask it again—just find and use the existing information. And when in doubt, tools like ChatGPT can serve as an excellent resource for general knowledge and troubleshooting.
 
 So, before you ask, research. And if you must ask, make it a great question.
 
-*This essay used ChatGPT to suggest Markdown applications and polishing.*
+*This essay was grammar checked with ChatGPT.*
