@@ -6,17 +6,17 @@
     "email": "shadejsm@gmail.com",
     "phone": "",
     "website": "https://shadematsumoto.github.io",
-    "summary": "I am currently studying Computer Science in the Department of Information and Computer Sciences at the University of Hawaii at Manoa. I expect to graduate in Fall, 2027.",
-    "location": { "address": "", "postalCode": "", "city": "Honolulu", "countryCode": "USA", "region": "Hawaii" },
+    "summary": "I am currently studying Computer Science in the Department of Information and Computer Sciences at the University of Hawaiʻi at Mānoa. I expect to graduate with a B.S. degree Fall, 2027.",
+    "location": { "address": "", "postalCode": "", "city": "Honolulu", "countryCode": "USA", "region": "Hawaiʻi" },
     "profiles": [
       { "network": "github", "username": "shadematsumoto", "url": "https://github.com/shadematsumoto" },
       { "network": "linkedin", "username": "Shade Matsumoto", "url": "https://www.linkedin.com/in/shade-matsumoto-187738292" }
     ]
   },
   "interests": [
+    { "name": "Web Development" },
     { "name": "Game Development" },
-    { "name": "Graphic Design" },
-    { "name": "Robotics" }
+    { "name": "Graphic Design" }
   ],
   "skills": [
     {
@@ -25,18 +25,18 @@
     },
     {
       "name": "Toolsets/OS",
-      "keywords": [ "MacOS", "Windows", "Git/GitHub" ]
+      "keywords": [ "MacOS", "Windows", "Git/GitHub", "Microsoft Excel" ]
     }
   ],
   "education": [
     {
-      "institution": "University of Hawaii, Honolulu, HI",
+      "institution": "University of Hawaiʻi, Honolulu, HI",
       "area": "Computer Science (expected Fall, 2027)",
       "studyType": "B.S.",
       "startDate": "2023-08-21",
       "endDate": "Present",
       "courses": [
-        "ICS 314 Software Engineering",
+        "ICS 314 Software Engineering (in-progress)",
         "ICS 311 Algorithms",
         "ICS 212 Program Structure",
         "ICS 141-241 Discrete Mathematics for Computer Science"
@@ -52,12 +52,12 @@
       "endDate": "Present",
       "summary": "",
       "highlights": [
-        "Troubleshoot software, hardware and networking issues over the phone",
+        "Troubleshoot software, hardware, and networking issues over the phone",
         "Answer phone and email responses to the ITS Help Desk"
       ]
     },
     {
-      "company": "Department of Political Science - University of Hawaii",
+      "company": "Department of Political Science – University of Hawaiʻi",
       "position": "Office Assistant",
       "website": "https://politicalscience.manoa.hawaii.edu/",
       "startDate": "2023-09-18",
