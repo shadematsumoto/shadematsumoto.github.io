@@ -11,7 +11,7 @@ labels:
   - Networking
 ---
 
-![Photo with Sam Lipson](../img/tech-minds-pic.jpg){#myimage width=20%}
+![Photo with Sam Lipson](../img/tech-minds-pic.jpg)
 
 ## An Eye-Opening Experience at Tech Minds Meetup
 
