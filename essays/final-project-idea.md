@@ -10,6 +10,8 @@ labels:
 
 # Final Project Idea: You Are Not Alone
 
+![Faces ranging from happy to sad](../img/moods.jpg)
+
 ## Overview
 
 ### The Problem
@@ -18,9 +20,11 @@ At the University of Hawaiʻi at Mānoa, many students, faculty, and staff strug
 
 ### The Solution
 
+![graph](../img/graph.png)
+
 **You Are Not Alone** is a mood-tracking and analytics web application tailored for the UH Mānoa community. Users can anonymously log their mood throughout the day via a simple form (rating 0–100 + emotion tags and cause), contributing to a campus-wide visualization of stress, happiness, and energy levels.
 
-The application focuses on building user empathy and emotional resilience, with features that emphasize **“you are not alone”** showing how many other students feel similarly. The site also introduces personalized gamification through features like a pet blob that grows based on usage, mood-responsive themes, and collectible “cognitive cards” offering mood-based suggestions.
+The application focuses on building user empathy and emotional resilience, with features that emphasize **“you are not alone”** showing how many other students feel similarly. The site also introduces personalized gamification through features like a pet blob that grows based on usage, mood-responsive themes (the colors change based on your mood), and collectible “cognitive cards” offering mood-based suggestions.
 
 ## Names of the Proposers
 
@@ -40,7 +44,7 @@ The application focuses on building user empathy and emotional resilience, with 
 - Submit button
 
 ### 2. **Dashboard (Global Stats)**
-- Line graph showing aggregated mood trends by hour
+- Line graph showing aggregated mood trends based on time
 - Filter options (by major, age, college, time of day)
 - Summary text: “You are not alone. 87 students feel the same way today.”
 - Heatmap of UH campus showing average mood per location (Localized Mood Zones)
@@ -48,7 +52,7 @@ The application focuses on building user empathy and emotional resilience, with 
 ### 3. **My Garden / Pet Blob Page**
 - Visual representation of user’s emotional streak (growing plant or evolving blob)
 - Daily mood history (list or calendar)
-- “Cognitive Cards” earned from logging moods
+- “Cognitive Cards” that are collectibles earned from logging moods
 - Weekly Recap: Best day, worst day, mood streaks
 
 ### 4. **Achievement Page**
@@ -61,6 +65,8 @@ The application focuses on building user empathy and emotional resilience, with 
 - **Instructor checks aggregate mood at 7am class time:** Finds consistent low energy and considers adjusting pace or structure.
 - **Student keeps logging moods over the semester:** Their pet blob grows, and their garden reflects their journey. At semester’s end, they receive a recap of emotional highlights.
 - **Club leader sees high stress in their members before a major event:** Uses the info to reschedule or offer support.
+
+![Chart of Energy and Mood](../img/mood-graph.jpg)
 
 ## Beyond the Basics
 
@@ -76,3 +82,6 @@ The application focuses on building user empathy and emotional resilience, with 
 - Based on a problem many UH students face
 - Data collected is useful for both students and faculty
 - Potential integration with student orgs or mental health campaigns
+
+## Closing Notes
+This project can serve teachers and students, allowing it to be a versatile website for serious use by students and instructors. We believe every student and teacher would find the timeline of data to be insightful to the University's dynamics while also giving insightful mental health tips to those that need it in an engaging manner.
