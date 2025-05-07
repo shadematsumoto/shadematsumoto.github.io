@@ -10,11 +10,11 @@ labels:
 
 # Final Project Idea: You Are Not Alone
 
-![ChatGPT Logo](../img/chatgpt-logo.png)
+<img src="../img/chatgpt-logo.png" alt="ChatGPT Logo" width="200"/>
 
 ## Introduction
 
-During my time in ICS 314, Software Engineering at the University of Hawai‘i at Mānoa, I utilized AI tools such as ChatGPT and GitHub Co-Pilot to complement my learning. These tools became part of my everyday workflow—sometimes as a brainstorming partner, other times as a debugging assistant. This essay explores how these technologies impacted my coursework, my comprehension of software engineering principles, and the broader implications of integrating AI into education.
+During my time in ICS 314, Software Engineering at the University of Hawai‘i at Mānoa, I utilized AI tools such as ChatGPT and GitHub Co-Pilot to complement my learning. These tools became part of my everyday workflow, sometimes as a brainstorming partner, other times as a debugging assistant. This essay explores how these technologies impacted my coursework, my comprehension of software engineering principles, and the broader implications of integrating AI into education.
 
 ## Personal Experience with AI
 
@@ -66,17 +66,17 @@ AI was helpful here as well. I asked ChatGPT, “Add comments to this React func
 
 ### Quality Assurance
 
-AI had mixed success in this area. For ESLint errors, it was often useful—ChatGPT could suggest corrected syntax when prompted with, “Fix ESLint error in this code block.” However, for deeper logic bugs, AI could misinterpret the problem or provide irrelevant suggestions.
+AI had mixed success in this area. For ESLint errors, it was often useful as ChatGPT could suggest corrected syntax when prompted with, “Fix ESLint error in this code block.” However, for deeper logic bugs, AI could misinterpret the problem or provide irrelevant suggestions.
 
 ### JSON Formatting
 
 AI was very useful for converting arbitrary data from text into valid JSON format. This was difficult, but with some prompt engineering (some organized prompts from the internet), it was possible and much faster than manually typing it.
 
-![GitHub Co-Pilot Logo](../img/github-copilot.png)
+<img src="../img/github-copilot.png" alt="GitHub Co-Pilot Logo" width="200"/>
 
 ## Impact on Learning and Understanding
 
-Using AI tools significantly improved my comprehension of software engineering principles by accelerating feedback loops. I could get instant clarification on concepts I struggled with, which helped reinforce classroom instruction. However, the biggest value came from using AI as a complement, not a replacement—it supported problem-solving without doing the thinking for me.
+Using AI tools significantly improved my comprehension of software engineering principles by accelerating feedback loops. I could get instant clarification on concepts I struggled with, which helped reinforce classroom instruction. However, the biggest value came from using AI as a complement, not a replacement. It supported problem-solving without doing the thinking for me.
 
 ## Practical Applications
 
@@ -84,11 +84,11 @@ Outside ICS 314, I’ve used AI in real-world robotics projects with ROS. For ex
 
 ## Challenges and Opportunities
 
-One of the main challenges is the lack of context. AI often struggles with specific project scopes or unconventional bugs. Another limitation is accuracy—AI can hallucinate APIs  outdated syntax. On the opportunity side, AI could be integrated into the curriculum more deeply through guided prompts, in-app debugging, or sandbox AI coding environments that are context-aware.
+One of the main challenges is the lack of context. AI often struggles with specific project scopes or unconventional bugs. Another limitation is accuracy as AI can hallucinate APIs  outdated syntax. On the opportunity side, AI could be integrated into the curriculum more deeply through guided prompts, in-app debugging, or sandbox AI coding environments that are context-aware.
 
 ## Comparative Analysis
 
-Compared to traditional learning methods, AI-enhanced approaches offer speed and convenience. Instead of poring over documentation, I can get concise summaries tailored to my questions. However, traditional methods foster deeper understanding and problem-solving resilience. Combining both methods—self-discovery followed by AI confirmation—was the most effective strategy for me.
+Compared to traditional learning methods, AI-enhanced approaches offer speed and convenience. Instead of poring over documentation, I can get concise summaries tailored to my questions. However, traditional methods foster deeper understanding and problem-solving resilience. Combining both methods self-discovery followed by AI confirmation was the most effective strategy for me.
 
 ## Future Considerations
 
@@ -96,4 +96,6 @@ Looking forward, I expect AI to play an even more integral role in software engi
 
 ## Conclusion
 
-My experience with AI in ICS 314 was largely positive and enlightening. Tools like ChatGPT and Copilot supported my growth as a developer, especially in terms of understanding, debugging, and documentation. However, they couldn’t replace the value of deep learning, human feedback, and project-specific knowledge. My recommendation is to treat AI as a supportive teammate—useful, but not infallible—and continue to emphasize foundational knowledge in software engineering education.
+My experience with AI in ICS 314 was largely positive and enlightening. Tools like ChatGPT and Copilot supported my growth as a developer, especially in terms of understanding, debugging, and documentation. However, they couldn’t replace the value of deep learning, human feedback, and project-specific knowledge. My recommendation is to treat AI as a supportive teammate, useful, but not infallible, and continue to emphasize foundational knowledge in software engineering education.
+
+*This essay was grammar checked with ChatGPT.*
