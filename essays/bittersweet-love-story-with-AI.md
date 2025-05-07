@@ -8,7 +8,7 @@ labels:
   - Artificial Intelligence
 ---
 
-# Final Project Idea: You Are Not Alone
+# Bittersweet Love Story with AI
 
 <img src="../img/chatgpt-logo.png" alt="ChatGPT Logo" width="200"/>
 
