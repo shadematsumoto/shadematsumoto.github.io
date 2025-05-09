@@ -3,7 +3,7 @@ layout: essay
 type: essay
 title: "Estimating the Impossible"
 date: 2025-05-08
-published: false
+published: true
 labels:
   - Software Engineering
   - GitHub
