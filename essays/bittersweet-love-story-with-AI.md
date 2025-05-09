@@ -10,7 +10,7 @@ labels:
 
 # Bittersweet Love Story with AI
 
-<img src="../img/chatgpt-logo.png" alt="ChatGPT Logo" width="200"/>
+<img src="../img/chatgpt-logo.png" alt="ChatGPT Logo" width="300"/>
 
 ## Introduction
 

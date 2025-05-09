@@ -11,7 +11,7 @@ labels:
   - Formatting Standards
 ---
 
-![Bootstrap Icon](../img/bootstrap-icon.png)
+<img width="500px" class="rounded pe-4" src="../img/bootstrap-icon.png">
 
 ### Bootstrap: A UI Framework Setting Standards
 
@@ -23,11 +23,11 @@ One of the most useful aspects of Bootstrap is its flexible layout system, which
 
 The biggest difficulty I encountered was positioning the text box and buttons exactly as they appear on the original ChatGPT site. While Bootstrap's responsive design tools helped, I found that resizing the screen often caused misalignment issues. Buttons would shift unpredictably, and their sizes did not scale as expected. This experience highlighted an important lesson: even with a framework like Bootstrap, achieving pixel-perfect design requires careful attention to responsive behavior and viewport dimensions.
 
-![Original ChatGPT Website](../img/chatgpt-original-site.png)
+<img width="500px" class="rounded pe-4" src="../img/chatgpt-original-site.png">
 
 *The original ChatGPT website*
 
-![Remake ChatGPT Website](../img/chatgpt-remake-site.png)
+<img width="500px" class="rounded pe-4" src="../img/chatgpt-remake-site.png">
 
 *My ChatGPT remake*
 

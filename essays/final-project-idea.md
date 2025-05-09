@@ -10,7 +10,7 @@ labels:
 
 # Final Project Idea: You Are Not Alone
 
-![Faces ranging from happy to sad](../img/moods.jpg)
+<img width="500px" class="rounded pe-4" src="../img/moods.jpg">
 
 ## Overview
 
@@ -20,7 +20,7 @@ At the University of Hawaiʻi at Mānoa, many students, faculty, and staff strug
 
 ### The Solution
 
-![graph](../img/graph.png)
+<img width="500px" class="rounded pe-4" src="../img/graph.png">
 
 **You Are Not Alone** is a mood-tracking and analytics web application tailored for the UH Mānoa community. Users can anonymously log their mood throughout the day via a simple form (rating 0–100 + emotion tags and cause), contributing to a campus-wide visualization of stress, happiness, and energy levels.
 
@@ -66,7 +66,7 @@ The application focuses on building user empathy and emotional resilience, with 
 - **Student keeps logging moods over the semester:** Their pet blob grows, and their garden reflects their journey. At semester’s end, they receive a recap of emotional highlights.
 - **Club leader sees high stress in their members before a major event:** Uses the info to reschedule or offer support.
 
-![Chart of Energy and Mood](../img/mood-graph.jpg)
+<img width="400px" class="rounded pe-4" src="../img/mood-graph.jpg">
 
 ## Beyond the Basics
 
