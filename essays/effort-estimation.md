@@ -10,7 +10,7 @@ labels:
   - Team
 ---
 
-<img width="100px" class="rounded float-start pe-4" src="../img/issues.png">
+<img width="400px" class="rounded" src="../img/issues.png">
 
 # The Importance of Estimating
 

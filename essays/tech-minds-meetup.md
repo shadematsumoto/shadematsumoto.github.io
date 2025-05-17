@@ -4,7 +4,7 @@ type: essay
 title: "Tech Minds Meetup: A Glimpse Into the Future"
 # All dates must be YYYY-MM-DD format!
 date: 2025-02-15
-published: true
+published: false
 labels:
   - Technology
   - Career Development

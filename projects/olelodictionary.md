@@ -4,7 +4,7 @@ type: project
 image: img/dictionary-command-line.png
 title: "Olelo Dictionary"
 date: 2024
-published: true
+published: false
 labels:
   - Java
   - Data structures

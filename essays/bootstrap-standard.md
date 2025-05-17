@@ -4,7 +4,7 @@ type: essay
 title: "Bootstrap: A UI Framework Setting Standards"
 # All dates must be YYYY-MM-DD format!
 date: 2025-02-27
-published: true
+published: false
 labels:
   - HTML/CSS
   - UI Framework

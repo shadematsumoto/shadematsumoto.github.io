@@ -1,7 +1,7 @@
 ---
 layout: project
 type: project
-image: img/database-command-line.png
+image: img/da-grindz-landing-page.png
 title: "Da Grindz Website"
 date: 2025
 published: true
@@ -12,40 +12,14 @@ labels:
 summary: "As a team, we created a website to track meals and view vendors at the University of Hawai'i at Manoa."
 ---
 
-![Command Line](../img/database-command-line.png)
+![Da Grindz Landing Page](../img/da-grindz-landing-page.png)
 
-The Bank Database Management System is a C++ program designed for ICS 212: Programming Structure to manage bank records through a user-friendly interface. It employs a linked list data structure to dynamically store and manipulate customer account data, including account numbers, names, and addresses. The system features an interactive menu that enables users to:  
+**Da Grindz** is a nutrition-focused web app built by our seven-person UH Mānoa capstone team. The site helps students and staff discover healthier meals on campus by pairing an interactive vendor map with personalized meal-planning and “Grindz Mood” recommendations. We delivered the app over three milestones, deploying each iteration with a Next.js + TypeScript front-end, and PostgreSQL back end.
 
-- **Add** new records  
-- **Print** all records  
-- **Search** for a specific record by account number  
-- **Delete** a record from the database  
+![Da Grindz Map Page](../img/da-grindz-map-page.png)
 
-This project demonstrates the practical application of linked lists in C++ for efficient data management. Additionally, it supports file I/O operations to read and write records, preserving data between sessions. The user interface ensures proper input validation and guides users through data entry. The system is designed to be extensible, with potential enhancements such as record updates and more advanced data management features.  
+My primary responsibility was to make sure the rest of the team never had to wonder, *“Where’s the food data?”* so I owned both the campus map and the initial import of every eatery, café, and vending machine. Early in Milestone 1 I gathered operating hours, names, locations, and payment details from multiple vendors, normalized them into a single default JSON data file, and configured the program to seed our PostgreSQL database. With that data in place, I integrated the map component, placing accurate pins across the UH Mānoa campus and connecting each marker to our central vendor records. Because the map went live in the very first release, my teammates could immediately plug real vendor objects into the dashboard, planner, and nutrition-tracking features instead of waiting for mock data.
 
-As a solo project, I was responsible for writing the entire codebase. Throughout development, I gained valuable experience in designing well-structured data management systems that can be easily integrated into other projects. To enhance usability for future developers, I maintained clear syntax, implemented Makefiles, and ensured the codebase was readable and maintainable.  
+Cleaning and importing the data was less straightforward than it sounds. Availability hours were in three different formats, vendor names were inconsistent, and vending machines rarely publish schedules at all. On the map side, performance mattered: the default view shows dozens of markers at once, so I deferred some rendering work to keep page loads smooth on older phones.
 
-### **Sample Code – Account Number Input Handling**  
-
-Below is a function that ensures valid account number input, demonstrating input validation and error handling:  
-
-```cpp
-void getAccountNum(int &uaccountno)
-{
-    cout << "\nEnter account number: ";
-
-    cin >> uaccountno;
-    while (cin.fail() || uaccountno <= 0)
-    {
-        cin.clear();
-        cin.ignore(10000, '\n'); /* Clear buffer */
-        cout << "Invalid input. Please enter a positive integer: ";
-        cin >> uaccountno;
-    }
-    cin.ignore(10000, '\n'); /* Clear buffer */
-}
-```
-
-This function prevents invalid inputs, ensuring users enter positive integers only before processing the account number.
-
-Source: [User Database](https://github.com/shadematsumoto/User-Database).
+The payoff was tangible. During usability tests, several classmates specifically mentioned how helpful it was to “see every place to eat in one spot.” Internally, having a stable, queryable vendor schema unblocked the rest of the team: the planner used my hours data to suggest meals, the nutrition module tied macros to each menu item, and the “Grindz Mood” feature filtered vendors by the tags I attached up front.

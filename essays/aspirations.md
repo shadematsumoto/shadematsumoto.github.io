@@ -4,7 +4,7 @@ type: essay
 title: "Future Aspirations of a Software Engineer"
 # All dates must be YYYY-MM-DD format!
 date: 2025-01-25
-published: true
+published: false
 labels:
   - Aspirations
   - Past & Future

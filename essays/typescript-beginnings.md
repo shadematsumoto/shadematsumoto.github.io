@@ -4,7 +4,7 @@ type: essay
 title: "Personal Beginnings with Javascript's Cousin: Typescript"
 # All dates must be YYYY-MM-DD format!
 date: 2025-01-23
-published: true
+published: false
 labels:
   - Software Engineering
   - Typescript
