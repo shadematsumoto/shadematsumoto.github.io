@@ -1,0 +1,387 @@
+/* shadematsumoto.github.io
+
+   Colors, type, and spacing are variables in :root below.
+   Change them there; the rest of the file only refers to them.
+
+   Layout: a two-column index. The left column (--key) holds dates and
+   labels, the right column holds content. On phones it becomes one column. */
+
+@font-face {
+  font-family: "SM Mono";
+  src: url("fonts/sm-mono-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SM Mono";
+  src: url("fonts/sm-mono-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "SM Slab";
+  src: url("fonts/sm-slab-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light dark;
+
+  /* Light: navy ink on drafting paper */
+  --paper: #fbfcfd;
+  --ink: #1c2b3f;
+  --ink-strong: #0e2344;
+  --muted: #5b6b80;
+  --rule: #dde3ea;
+  --link: #1f4fb0;
+  --frame: #eef2f6;
+  --grid: rgb(14 35 68 / 0.07);
+
+  /* Type */
+  --font-text: "SM Mono", ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --font-display: "SM Slab", var(--font-text);
+  --leading: 1.6;
+  --lh: 1.6rem; /* one line of body text; vertical spacing uses multiples of this */
+
+  /* Layout */
+  --key: 18ch;     /* left column: dates and labels */
+  --gap: 2ch;      /* space between the columns */
+  --measure: 62ch; /* longest line in the right column */
+  --pad: clamp(1.5rem, 5vw, 3rem);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Dark: blueprint, white lines on cyanotype blue */
+    --paper: #12304f;
+    --ink: #d5e1ee;
+    --ink-strong: #ffffff;
+    --muted: #9fb5cd;
+    --rule: #2c4d71;
+    --link: #ffffff;
+    --frame: #0e2842;
+    --grid: rgb(255 255 255 / 0.07);
+  }
+}
+
+/* Base ------------------------------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 93.75%; /* 15px when the browser default is 16px; respects user settings */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-text);
+  font-size: 1rem;
+  line-height: var(--leading);
+}
+
+a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: color-mix(in srgb, var(--link) 40%, transparent);
+}
+a:hover {
+  text-decoration-color: currentColor;
+}
+
+:focus-visible {
+  outline: 2px solid var(--link);
+  outline-offset: 2px;
+}
+
+::selection {
+  background: var(--ink-strong);
+  color: var(--paper);
+}
+
+b {
+  font-weight: 600;
+  color: var(--ink-strong);
+}
+
+p,
+li,
+dd {
+  text-wrap: pretty; /* avoids a single word on the last line, where supported */
+}
+
+code {
+  font-family: inherit;
+  font-size: 1em;
+  color: var(--ink-strong);
+  overflow-wrap: anywhere;
+}
+
+/* Page ------------------------------------------------------------------ */
+
+.page {
+  max-width: calc(var(--key) + var(--gap) + var(--measure) + 2 * var(--pad));
+  margin-left: clamp(0rem, calc((100vw - 60rem) * 0.32), 18rem);
+  padding: calc(var(--lh) * 3) var(--pad) calc(var(--lh) * 2);
+}
+
+/* Header ---------------------------------------------------------------- */
+
+.name {
+  margin: 0 0 var(--lh);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 1.2rem + 3vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--ink-strong);
+}
+
+.lede {
+  max-width: 64ch;
+  margin: 0 0 var(--lh);
+}
+
+/* Key/value lists (contact, skills, project links) ---------------------- */
+
+.kv {
+  margin: 0;
+}
+.kv > div {
+  display: grid;
+  grid-template-columns: var(--key) minmax(0, var(--measure));
+  column-gap: var(--gap);
+}
+.kv dt {
+  color: var(--muted);
+}
+.kv dd {
+  margin: 0;
+}
+
+/* Inside an entry the keys are short, so the key column is narrower. */
+.kv--inner {
+  margin-top: calc(var(--lh) * 0.5);
+}
+.kv--inner > div {
+  grid-template-columns: 8ch minmax(0, 1fr);
+}
+
+/* Sections -------------------------------------------------------------- */
+
+section {
+  margin-top: calc(var(--lh) * 3);
+}
+
+h2 {
+  position: relative;
+  margin: 0 0 var(--lh);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: var(--lh);
+  color: var(--ink-strong);
+}
+
+/* The "#" in the margin is a permalink to the section. */
+.anchor {
+  position: absolute;
+  right: 100%;
+  padding-right: 1ch;
+  color: var(--muted);
+  text-decoration: none;
+  opacity: 0.55;
+}
+.anchor:hover,
+.anchor:focus-visible {
+  opacity: 1;
+}
+
+/* Entries (jobs, projects, education, awards) --------------------------- */
+
+.entry {
+  display: grid;
+  grid-template-columns: var(--key) minmax(0, var(--measure));
+  column-gap: var(--gap);
+}
+.entry + .entry {
+  margin-top: calc(var(--lh) * 1.25);
+}
+
+.when {
+  margin: 0;
+  color: var(--muted);
+}
+
+.what > * {
+  margin: 0;
+}
+.what h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: var(--leading);
+  color: var(--ink-strong);
+}
+.what p + p {
+  margin-top: calc(var(--lh) * 0.5);
+}
+
+.what ul {
+  list-style: none;
+  margin-top: calc(var(--lh) * 0.5);
+  padding: 0;
+}
+.what li {
+  position: relative;
+}
+.what li::before {
+  content: "-";
+  position: absolute;
+  left: -2ch;
+  color: var(--muted);
+}
+.what li + li {
+  margin-top: calc(var(--lh) * 0.25);
+}
+
+/* Demo video: a click-to-load frame, so the Google Drive player
+   (about 1 MB of scripts) only loads for people who want to watch. */
+
+.demo {
+  margin: var(--lh) 0 0;
+}
+.demo-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  background-color: var(--frame);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  background-position: -1px -1px;
+}
+.demo-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+}
+.has-poster .demo-poster {
+  opacity: 1;
+}
+.demo-play {
+  position: relative;
+  padding: 0.4rem 1.5ch;
+  border: 1px solid var(--ink-strong);
+  background: var(--paper);
+  color: var(--ink-strong);
+  text-decoration: none;
+}
+.demo-play:hover {
+  background: var(--ink-strong);
+  color: var(--paper);
+}
+.demo-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.demo figcaption {
+  margin-top: calc(var(--lh) * 0.25);
+  color: var(--muted);
+}
+
+/* Footer ---------------------------------------------------------------- */
+
+.foot {
+  margin-top: calc(var(--lh) * 4);
+  padding-top: var(--lh);
+  border-top: 1px solid var(--rule);
+  color: var(--muted);
+}
+.foot p {
+  margin: 0;
+}
+.foot a {
+  color: inherit;
+}
+
+/* Phones ---------------------------------------------------------------- */
+
+@media (max-width: 44rem) {
+  .page {
+    padding-top: calc(var(--lh) * 2);
+  }
+  .anchor {
+    display: none;
+  }
+  .what ul {
+    padding-left: 2ch;
+  }
+  .entry,
+  .kv--stack > div {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .kv--contact > div {
+    grid-template-columns: 10ch minmax(0, 1fr);
+    column-gap: 0;
+  }
+  .kv--stack > div + div {
+    margin-top: calc(var(--lh) * 0.5);
+  }
+  section {
+    margin-top: calc(var(--lh) * 2.5);
+  }
+}
+
+/* Print: a clean one-color copy -------------------------------------------- */
+
+@media print {
+  :root {
+    --paper: #fff;
+    --ink: #000;
+    --ink-strong: #000;
+    --muted: #444;
+    --link: #000;
+    --rule: #bbb;
+  }
+  html {
+    font-size: 9pt;
+  }
+  .page {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+  .anchor,
+  .demo {
+    display: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  .entry {
+    break-inside: avoid;
+  }
+}
