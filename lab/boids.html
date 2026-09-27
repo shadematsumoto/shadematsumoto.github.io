@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boids | Shade Matsumoto</title>
+  <link rel="icon" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<main class="page">
+  <p class="back"><a href="../#lab">← back</a></p>
+  <h1>Boids</h1>
+  <p class="intro">
+    Craig Reynolds' flocking model from 1986. Each bird only looks at the
+    birds near it and follows three rules: don't crowd them, fly the same way
+    they're flying, and stay close to them. Nobody is in charge, but you still
+    get a flock. Move your mouse through them (or drag a finger) to scare them.
+  </p>
+
+  <div class="controls">
+    <label>separation <input type="range" id="sep" min="0" max="3" step="0.1" value="1.5"></label>
+    <label>alignment <input type="range" id="ali" min="0" max="3" step="0.1" value="1"></label>
+    <label>cohesion <input type="range" id="coh" min="0" max="3" step="0.1" value="1"></label>
+  </div>
+
+  <canvas id="canvas" style="aspect-ratio: 3 / 2; touch-action: none"></canvas>
+</main>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const sep = document.getElementById("sep");
+const ali = document.getElementById("ali");
+const coh = document.getElementById("coh");
+
+const color = getComputedStyle(document.documentElement).getPropertyValue("--heading").trim();
+
+const VIEW = 50; // how far each bird can see
+const SPACE = 18; // how close is too close
+const MAX_SPEED = 3;
+const MIN_SPEED = 1.5;
+
+let w, h;
+let boids = [];
+let mouse = null;
+
+function resize() {
+  const dpr = window.devicePixelRatio || 1;
+  w = canvas.clientWidth;
+  h = canvas.clientHeight;
+  canvas.width = w * dpr;
+  canvas.height = h * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+function spawn() {
+  const count = Math.round((w * h) / 2500);
+  boids = [];
+  for (let i = 0; i < count; i++) {
+    const angle = Math.random() * Math.PI * 2;
+    boids.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: Math.cos(angle) * 2,
+      vy: Math.sin(angle) * 2,
+    });
+  }
+}
+
+function update() {
+  for (const b of boids) {
+    let n = 0;
+    let cx = 0, cy = 0; // center of the neighbors
+    let ax = 0, ay = 0; // their average velocity
+    let sx = 0, sy = 0; // push away from anyone too close
+
+    for (const o of boids) {
+      if (o === b) continue;
+      const dx = o.x - b.x;
+      const dy = o.y - b.y;
+      const d = Math.hypot(dx, dy);
+      if (d > VIEW) continue;
+
+      n++;
+      cx += o.x;
+      cy += o.y;
+      ax += o.vx;
+      ay += o.vy;
+      if (d > 0 && d < SPACE) {
+        sx -= dx / (d * d);
+        sy -= dy / (d * d);
+      }
+    }
+
+    if (n > 0) {
+      b.vx += (cx / n - b.x) * 0.001 * coh.value + (ax / n - b.vx) * 0.05 * ali.value;
+      b.vy += (cy / n - b.y) * 0.001 * coh.value + (ay / n - b.vy) * 0.05 * ali.value;
+    }
+    b.vx += sx * sep.value;
+    b.vy += sy * sep.value;
+
+    if (mouse) {
+      const dx = b.x - mouse.x;
+      const dy = b.y - mouse.y;
+      const d = Math.hypot(dx, dy);
+      if (d > 0 && d < 80) {
+        b.vx += (dx / d) * 0.8;
+        b.vy += (dy / d) * 0.8;
+      }
+    }
+
+    // turn around before hitting the walls
+    const margin = 40;
+    if (b.x < margin) b.vx += 0.15;
+    if (b.x > w - margin) b.vx -= 0.15;
+    if (b.y < margin) b.vy += 0.15;
+    if (b.y > h - margin) b.vy -= 0.15;
+
+    const speed = Math.hypot(b.vx, b.vy);
+    if (speed > MAX_SPEED) {
+      b.vx *= MAX_SPEED / speed;
+      b.vy *= MAX_SPEED / speed;
+    } else if (speed < MIN_SPEED && speed > 0) {
+      b.vx *= MIN_SPEED / speed;
+      b.vy *= MIN_SPEED / speed;
+    }
+  }
+
+  for (const b of boids) {
+    b.x += b.vx;
+    b.y += b.vy;
+  }
+}
+
+function draw() {
+  ctx.clearRect(0, 0, w, h);
+  ctx.fillStyle = color;
+  for (const b of boids) {
+    ctx.save();
+    ctx.translate(b.x, b.y);
+    ctx.rotate(Math.atan2(b.vy, b.vx));
+    ctx.beginPath();
+    ctx.moveTo(6, 0);
+    ctx.lineTo(-4, 3);
+    ctx.lineTo(-4, -3);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+function frame() {
+  update();
+  draw();
+  requestAnimationFrame(frame);
+}
+
+canvas.addEventListener("pointermove", (e) => {
+  const rect = canvas.getBoundingClientRect();
+  mouse = { x: e.clientX - rect.left, y: e.clientY - rect.top };
+});
+canvas.addEventListener("pointerleave", () => (mouse = null));
+window.addEventListener("resize", resize);
+
+resize();
+spawn();
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>

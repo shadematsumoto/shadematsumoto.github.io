@@ -26,6 +26,7 @@
   --muted: #5b6b80;
   --border: #dde3ea;
   --link: #1f4fb0;
+  --accent: #d0501e;
   --box: #eef2f6;
   --grid: rgba(14, 35, 68, 0.07);
 }
@@ -39,6 +40,7 @@
     --muted: #9fb5cd;
     --border: #2c4d71;
     --link: #fff;
+    --accent: #ffb070;
     --box: #0e2842;
     --grid: rgba(255, 255, 255, 0.07);
   }
@@ -237,6 +239,54 @@ footer p {
 
 footer a {
   color: inherit;
+}
+
+/* lab pages */
+.back {
+  margin: 0 0 2rem;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+canvas {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--border);
+  background: var(--box);
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 2ch;
+  margin: 1.5rem 0 1rem;
+}
+
+.controls label {
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+}
+
+input {
+  accent-color: var(--link);
+}
+
+button {
+  padding: 0.2rem 1.5ch;
+  border: 1px solid var(--heading);
+  background: var(--bg);
+  color: var(--heading);
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--heading);
+  color: var(--bg);
 }
 
 @media (max-width: 700px) {

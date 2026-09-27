@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Maunakea sky | Shade Matsumoto</title>
+  <link rel="icon" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<main class="page">
+  <p class="back"><a href="../#lab">← back</a></p>
+  <h1>Maunakea sky</h1>
+  <p class="intro">
+    The stars over the summit of Maunakea, where Gemini North and the other
+    observatories are. North is up and east is on the left, like a map you'd
+    hold over your head. The edge of the circle is the horizon.
+  </p>
+
+  <div class="controls">
+    <label>time <input type="range" id="hours" min="-12" max="12" step="0.25" value="0"></label>
+    <span id="when"></span>
+    <label><input type="checkbox" id="hawaiian"> Hawaiian names</label>
+  </div>
+
+  <canvas id="sky" style="aspect-ratio: 1; max-width: 640px; border: 0; background: none"></canvas>
+
+  <p class="muted">
+    Stars down to magnitude 4.5, plus the Sun and Moon (no planets yet).
+    Star positions and constellation lines are from
+    <a href="https://github.com/ofrohn/d3-celestial">d3-celestial</a>. The
+    Hawaiian names are from the
+    <a href="https://archive.hokulea.com/ike/hookele/hawaiian_star_lines.html">Polynesian Voyaging Society</a>.
+  </p>
+</main>
+
+<script>
+// Maunakea summit
+const LAT = 19.82;
+const LON = -155.47;
+
+const rad = Math.PI / 180;
+
+const canvas = document.getElementById("sky");
+const ctx = canvas.getContext("2d");
+const hours = document.getElementById("hours");
+const when = document.getElementById("when");
+const hawaiianBox = document.getElementById("hawaiian");
+
+const css = getComputedStyle(document.documentElement);
+const ink = css.getPropertyValue("--heading").trim();
+const muted = css.getPropertyValue("--muted").trim();
+const accent = css.getPropertyValue("--accent").trim();
+const box = css.getPropertyValue("--box").trim();
+
+const hawaiian = {
+  Sun: "Lā",
+  Moon: "Mahina",
+  Arcturus: "Hōkūleʻa",
+  Polaris: "Hōkūpaʻa",
+  Sirius: "ʻAʻā",
+  Spica: "Hikianalia",
+  Antares: "Lehuakona",
+  Altair: "Humu",
+  Capella: "Hōkūlei",
+  Rigel: "Puanakau",
+  Procyon: "Puana",
+  Vega: "Keoe",
+  Aldebaran: "Hōkūʻula",
+  Betelgeuse: "Kauluakoko",
+  Castor: "Nānāmua",
+  Pollux: "Nānāhope",
+};
+
+let stars = [];
+let lines = [];
+
+function julianDate(date) {
+  return date.getTime() / 86400000 + 2440587.5;
+}
+
+// local sidereal time in degrees
+function siderealTime(jd) {
+  const gmst = 280.46061837 + 360.98564736629 * (jd - 2451545);
+  return (((gmst + LON) % 360) + 360) % 360;
+}
+
+function eclipticToEquatorial(lon, lat) {
+  const e = 23.439 * rad;
+  lon *= rad;
+  lat *= rad;
+  const ra = Math.atan2(Math.sin(lon) * Math.cos(e) - Math.tan(lat) * Math.sin(e), Math.cos(lon));
+  const dec = Math.asin(Math.sin(lat) * Math.cos(e) + Math.cos(lat) * Math.sin(e) * Math.sin(lon));
+  return [ra / rad, dec / rad];
+}
+
+// low precision sun and moon, good to about half a degree which is plenty here
+function sunPosition(jd) {
+  const n = jd - 2451545;
+  const L = 280.46 + 0.9856474 * n;
+  const g = (357.528 + 0.9856003 * n) * rad;
+  return eclipticToEquatorial(L + 1.915 * Math.sin(g) + 0.02 * Math.sin(2 * g), 0);
+}
+
+function moonPosition(jd) {
+  const n = jd - 2451545;
+  const L = 218.316 + 13.176396 * n;
+  const M = (134.963 + 13.064993 * n) * rad;
+  const F = (93.272 + 13.22935 * n) * rad;
+  const D = (297.85 + 12.190749 * n) * rad;
+  const S = (357.529 + 0.98560028 * n) * rad;
+  const lon = L + 6.289 * Math.sin(M) + 1.274 * Math.sin(2 * D - M) + 0.658 * Math.sin(2 * D)
+    + 0.214 * Math.sin(2 * M) - 0.186 * Math.sin(S) - 0.114 * Math.sin(2 * F);
+  return eclipticToEquatorial(lon, 5.128 * Math.sin(F));
+}
+
+// ra/dec to altitude/azimuth, azimuth measured from north through east
+function altAz(ra, dec, lst) {
+  const h = (lst - ra) * rad;
+  const d = dec * rad;
+  const lat = LAT * rad;
+  const alt = Math.asin(Math.sin(d) * Math.sin(lat) + Math.cos(d) * Math.cos(lat) * Math.cos(h));
+  const az = Math.atan2(-Math.cos(d) * Math.sin(h), Math.sin(d) * Math.cos(lat) - Math.cos(d) * Math.sin(lat) * Math.cos(h));
+  return [alt / rad, az / rad];
+}
+
+function draw() {
+  const size = canvas.clientWidth;
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = size * dpr;
+  canvas.height = size * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  const cx = size / 2;
+  const cy = size / 2;
+  const r = size / 2 - 20;
+
+  // zenith in the middle, horizon on the edge
+  function project(alt, az) {
+    const d = (r * (90 - alt)) / 90;
+    return [cx - d * Math.sin(az * rad), cy - d * Math.cos(az * rad)];
+  }
+
+  const date = new Date(Date.now() + hours.value * 3600000);
+  const jd = julianDate(date);
+  const lst = siderealTime(jd);
+  const name = (n) => (hawaiianBox.checked && hawaiian[n]) || n;
+
+  ctx.fillStyle = box;
+  ctx.beginPath();
+  ctx.arc(cx, cy, r, 0, Math.PI * 2);
+  ctx.fill();
+
+  ctx.strokeStyle = muted;
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // rings at 30 and 60 degrees up
+  ctx.globalAlpha = 0.3;
+  for (const alt of [30, 60]) {
+    ctx.beginPath();
+    ctx.arc(cx, cy, (r * (90 - alt)) / 90, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  ctx.globalAlpha = 0.45;
+  ctx.beginPath();
+  for (const line of lines) {
+    let prev = null;
+    for (const [ra, dec] of line) {
+      const [alt, az] = altAz(ra, dec, lst);
+      const p = alt > 0 ? project(alt, az) : null;
+      if (p && prev) {
+        ctx.moveTo(prev[0], prev[1]);
+        ctx.lineTo(p[0], p[1]);
+      }
+      prev = p;
+    }
+  }
+  ctx.stroke();
+  ctx.globalAlpha = 1;
+
+  ctx.fillStyle = muted;
+  ctx.font = "12px 'SM Mono', monospace";
+  ctx.textAlign = "center";
+  ctx.textBaseline = "middle";
+  ctx.fillText("N", cx, cy - r - 10);
+  ctx.fillText("S", cx, cy + r + 10);
+  ctx.fillText("E", cx - r - 10, cy);
+  ctx.fillText("W", cx + r + 10, cy);
+
+  const labels = [];
+  ctx.fillStyle = ink;
+  for (const [ra, dec, mag, star] of stars) {
+    const [alt, az] = altAz(ra, dec, lst);
+    if (alt < 0) continue;
+    const [x, y] = project(alt, az);
+    ctx.beginPath();
+    ctx.arc(x, y, Math.max(0.7, 2.8 - 0.5 * mag), 0, Math.PI * 2);
+    ctx.fill();
+    // on small screens only label the really bright ones
+    if (star && (size > 500 || mag < 1)) labels.push([name(star), x, y, 6]);
+  }
+
+  const [sunAlt, sunAz] = altAz(...sunPosition(jd), lst);
+  if (sunAlt > 0) {
+    const [x, y] = project(sunAlt, sunAz);
+    ctx.fillStyle = accent;
+    ctx.beginPath();
+    ctx.arc(x, y, 7, 0, Math.PI * 2);
+    ctx.fill();
+    labels.unshift([name("Sun"), x, y, 11]);
+  }
+
+  let [moonAlt, moonAz] = altAz(...moonPosition(jd), lst);
+  moonAlt -= 0.95 * Math.cos(moonAlt * rad); // parallax, the moon is close enough for it to matter
+  if (moonAlt > 0) {
+    const [x, y] = project(moonAlt, moonAz);
+    ctx.fillStyle = box;
+    ctx.strokeStyle = ink;
+    ctx.beginPath();
+    ctx.arc(x, y, 6, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.stroke();
+    labels.unshift([name("Moon"), x, y, 10]);
+  }
+
+  // put each label right of its star, or left if that's taken, or skip it
+  ctx.fillStyle = muted;
+  ctx.font = "11px 'SM Mono', monospace";
+  ctx.textAlign = "left";
+  const taken = [];
+  for (const [text, x, y, gap] of labels) {
+    const w = ctx.measureText(text).width;
+    for (const left of [x + gap, x - gap - w]) {
+      const clash = taken.some((b) => left < b.x + b.w && b.x < left + w && Math.abs(y - b.y) < 12);
+      if (!clash && left > 0 && left + w < size) {
+        ctx.fillText(text, left, y);
+        taken.push({ x: left, y, w });
+        break;
+      }
+    }
+  }
+
+  when.textContent =
+    date.toLocaleString("en-US", {
+      timeZone: "Pacific/Honolulu",
+      weekday: "short",
+      hour: "numeric",
+      minute: "2-digit",
+    }) +
+    " HST" +
+    (hours.value == 0 ? " (now)" : "") +
+    (sunAlt > 0 ? ", sun's up" : "");
+}
+
+fetch("sky.json")
+  .then((res) => res.json())
+  .then((data) => {
+    stars = data.stars;
+    lines = data.lines;
+    draw();
+  });
+
+hours.addEventListener("input", draw);
+hawaiianBox.addEventListener("change", draw);
+window.addEventListener("resize", draw);
+document.fonts.ready.then(draw);
+setInterval(draw, 60000);
+</script>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Double pendulum | Shade Matsumoto</title>
+  <link rel="icon" href="../assets/favicon.svg">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<main class="page">
+  <p class="back"><a href="../#lab">← back</a></p>
+  <h1>Double pendulum</h1>
+  <p class="intro">
+    Two double pendulums that start 0.001 radians apart. For a while they
+    swing together, then all of a sudden they have nothing to do with each
+    other. That's chaos. Click to drop them from somewhere new.
+  </p>
+
+  <canvas id="canvas" style="aspect-ratio: 4 / 3"></canvas>
+  <p class="muted" id="info"></p>
+</main>
+
+<script>
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+const info = document.getElementById("info");
+
+const css = getComputedStyle(document.documentElement);
+const colors = [css.getPropertyValue("--heading").trim(), css.getPropertyValue("--accent").trim()];
+
+const g = 9.81;
+const dt = 0.001; // seconds per physics step
+
+let pendulums = [];
+let t = 0;
+let last = null;
+
+function resize() {
+  const dpr = window.devicePixelRatio || 1;
+  canvas.width = canvas.clientWidth * dpr;
+  canvas.height = canvas.clientHeight * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+
+function reset() {
+  // start somewhere between sideways and upside down
+  const a1 = Math.PI / 2 + (Math.random() * Math.PI) / 2;
+  const a2 = Math.PI / 2 + (Math.random() * Math.PI) / 2;
+  pendulums = [
+    { s: [a1, a2, 0, 0], trail: [] },
+    { s: [a1, a2 + 0.001, 0, 0], trail: [] },
+  ];
+  t = 0;
+}
+
+// state is [angle1, angle2, speed1, speed2]
+// both arms are 1 m and both weights are 1 kg, which cleans up the equations a lot
+function derivs([a1, a2, w1, w2]) {
+  const d = a1 - a2;
+  const den = 3 - Math.cos(2 * d);
+  const acc1 = (-3 * g * Math.sin(a1) - g * Math.sin(a1 - 2 * a2) - 2 * Math.sin(d) * (w2 * w2 + w1 * w1 * Math.cos(d))) / den;
+  const acc2 = (2 * Math.sin(d) * (2 * w1 * w1 + 2 * g * Math.cos(a1) + w2 * w2 * Math.cos(d))) / den;
+  return [w1, w2, acc1, acc2];
+}
+
+// runge-kutta 4, euler blows up way too fast for this
+function rk4(s, h) {
+  const add = (a, b, k) => a.map((v, i) => v + b[i] * k);
+  const k1 = derivs(s);
+  const k2 = derivs(add(s, k1, h / 2));
+  const k3 = derivs(add(s, k2, h / 2));
+  const k4 = derivs(add(s, k3, h));
+  return s.map((v, i) => v + (h / 6) * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i]));
+}
+
+// where the bottom weight is, in meters from the pivot
+function tip(p) {
+  const [a1, a2] = p.s;
+  return [Math.sin(a1) + Math.sin(a2), Math.cos(a1) + Math.cos(a2)];
+}
+
+function draw() {
+  const w = canvas.clientWidth;
+  const h = canvas.clientHeight;
+  const cx = w / 2;
+  const cy = h / 2;
+  const L = Math.min(w, h) * 0.22; // pixels per meter
+
+  ctx.clearRect(0, 0, w, h);
+
+  pendulums.forEach((p, i) => {
+    ctx.strokeStyle = colors[i];
+    ctx.fillStyle = colors[i];
+
+    ctx.lineWidth = 1;
+    for (let j = 1; j < p.trail.length; j++) {
+      ctx.globalAlpha = j / p.trail.length;
+      ctx.beginPath();
+      ctx.moveTo(cx + L * p.trail[j - 1][0], cy + L * p.trail[j - 1][1]);
+      ctx.lineTo(cx + L * p.trail[j][0], cy + L * p.trail[j][1]);
+      ctx.stroke();
+    }
+    ctx.globalAlpha = 1;
+
+    const [a1, a2] = p.s;
+    const x1 = cx + L * Math.sin(a1);
+    const y1 = cy + L * Math.cos(a1);
+    const x2 = x1 + L * Math.sin(a2);
+    const y2 = y1 + L * Math.cos(a2);
+
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(cx, cy);
+    ctx.lineTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+
+    for (const [x, y] of [[x1, y1], [x2, y2]]) {
+      ctx.beginPath();
+      ctx.arc(x, y, 5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  });
+
+  const [ax, ay] = tip(pendulums[0]);
+  const [bx, by] = tip(pendulums[1]);
+  info.textContent = `t = ${t.toFixed(1)} s, the tips are ${Math.hypot(ax - bx, ay - by).toFixed(3)} m apart`;
+}
+
+function frame(now) {
+  // step by real time so it runs the same speed on any screen
+  const elapsed = last === null ? 0 : Math.min((now - last) / 1000, 0.05);
+  last = now;
+
+  const steps = Math.round(elapsed / dt);
+  for (let i = 0; i < steps; i++) {
+    for (const p of pendulums) p.s = rk4(p.s, dt);
+  }
+  t += steps * dt;
+
+  for (const p of pendulums) {
+    p.trail.push(tip(p));
+    if (p.trail.length > 200) p.trail.shift();
+  }
+
+  draw();
+  requestAnimationFrame(frame);
+}
+
+canvas.addEventListener("click", reset);
+window.addEventListener("resize", resize);
+
+resize();
+reset();
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
