@@ -1,69 +1,33 @@
-<!doctype html>
-<!--
-  shadematsumoto.github.io
-
-  All page content is in this file. Each section starts with a comment
-  explaining how to add or edit entries. Styles are in assets/site.css
-  (colors and type sizes are variables at the top). See README.md.
--->
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Shade Matsumoto</title>
   <meta name="description" content="Computer science student at the University of Hawaiʻi at Mānoa. C++ and Python for simulation, visualization, and data systems.">
-  <link rel="canonical" href="https://shadematsumoto.github.io/">
-
-  <meta name="color-scheme" content="light dark">
-  <meta name="theme-color" content="#fbfcfd" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#12304f" media="(prefers-color-scheme: dark)">
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="assets/favicon.svg">
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-
-  <link rel="preload" href="assets/fonts/sm-mono-400.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/site.css">
-  <script src="assets/site.js" defer></script>
 
-  <!-- Link previews (LinkedIn, Slack, iMessage) -->
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://shadematsumoto.github.io/">
   <meta property="og:title" content="Shade Matsumoto">
   <meta property="og:description" content="C++ and Python for simulation, visualization, and data systems. CS at the University of Hawaiʻi at Mānoa.">
   <meta property="og:image" content="https://shadematsumoto.github.io/assets/og.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Shade Matsumoto: simulation, visualization, and data systems.">
+  <meta property="og:url" content="https://shadematsumoto.github.io/">
   <meta name="twitter:card" content="summary_large_image">
-
-  <!-- Helps search engines connect this site to your GitHub and LinkedIn -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Shade Matsumoto",
-    "url": "https://shadematsumoto.github.io/",
-    "sameAs": [
-      "https://github.com/shadematsumoto",
-      "https://www.linkedin.com/in/shade-matsumoto-187738292"
-    ]
-  }
-  </script>
 </head>
 <body>
 <main class="page">
 
-  <!-- HEADER ============================================================= -->
   <header>
-    <h1 class="name">Shade Matsumoto</h1>
-    <!-- Update the last sentence whenever your search changes. -->
-    <p class="lede">
+    <h1>Shade Matsumoto</h1>
+    <p class="intro">
       I'm a computer science student at the University of Hawaiʻi at Mānoa,
       graduating in December 2027. I write C++ and Python for simulation,
       visualization, and data systems, including a physics simulation of a
       Gemini Observatory telescope (<a href="#demo">watch the demo</a>).
       I'm looking for software engineering internships for summer 2027.
     </p>
-    <dl class="kv kv--contact">
+    <dl class="info">
       <div><dt>email</dt><dd><a href="mailto:shadejsm@gmail.com">shadejsm@gmail.com</a></dd></div>
       <div><dt>github</dt><dd><a href="https://github.com/shadematsumoto">shadematsumoto</a></dd></div>
       <div><dt>linkedin</dt><dd><a href="https://www.linkedin.com/in/shade-matsumoto-187738292">shade-matsumoto</a></dd></div>
@@ -72,16 +36,12 @@
     </dl>
   </header>
 
-  <!-- EXPERIENCE =========================================================
-       Newest first. To add a role, copy one <article class="entry"> block.
-       Wrap results in <b> so they stand out, e.g. <b>30%</b>.
-       ===================================================================== -->
-  <section id="experience" aria-labelledby="experience-title">
-    <h2 id="experience-title"><a class="anchor" href="#experience" aria-label="Link to experience">#</a>experience</h2>
+  <section id="experience">
+    <h2><a href="#experience">#</a>experience</h2>
 
-    <article class="entry">
-      <p class="when"><time datetime="2026-08">Aug 2026</time>–now</p>
-      <div class="what">
+    <div class="entry">
+      <p class="date">Aug 2026 - now</p>
+      <div>
         <h3>Data Science Intern</h3>
         <p>U.S. Indo-Pacific Command, Honolulu, HI</p>
         <ul>
@@ -89,11 +49,11 @@
           <li>Design data integration pipelines for modernization efforts that improve operational efficiency.</li>
         </ul>
       </div>
-    </article>
+    </div>
 
-    <article class="entry">
-      <p class="when"><time datetime="2026-07">Jul 2026</time>–now</p>
-      <div class="what">
+    <div class="entry">
+      <p class="date">Jul 2026 - now</p>
+      <div>
         <h3>Undergraduate Research Assistant</h3>
         <p>Laboratory for Advanced Visualization &amp; Applications, UH Mānoa</p>
         <ul>
@@ -101,11 +61,11 @@
           <li>Build real-time rendering and data-processing pipelines, tuning memory use, frame performance, and interaction for large research datasets.</li>
         </ul>
       </div>
-    </article>
+    </div>
 
-    <article class="entry">
-      <p class="when"><time datetime="2025-06">Jun</time>–<time datetime="2025-08">Aug 2025</time></p>
-      <div class="what">
+    <div class="entry">
+      <p class="date">Jun - Aug 2025</p>
+      <div>
         <h3>Software Engineering Intern</h3>
         <p>NOIRLab Gemini Observatory, Hilo, HI</p>
         <ul>
@@ -114,26 +74,14 @@
           <li>Tuned Nanite parameters for high-fidelity 3D assemblies, cutting frame latency by <b>15%</b> and VRAM use by <b>30%</b> versus UE5 defaults.</li>
           <li>Built the simulation's real-time interface, prototyping features with the observatory's engineers.</li>
         </ul>
-
-        <!-- Demo video. Shows a play button; the Google Drive player loads only
-             when clicked. The Drive file must be shared as "Anyone with the link".
-             To use your own thumbnail, put an image in assets/ and change the
-             <img> src (e.g. assets/demo-poster.jpg). -->
-        <figure class="demo" id="demo">
-          <div class="demo-frame"
-               data-embed="https://drive.google.com/file/d/1OQ_XKyYgGnEQHxedZMcSaruPyoHU-CH4/preview"
-               data-title="Demo video: telescope mass-balance simulation">
-            <img class="demo-poster" src="https://drive.google.com/thumbnail?id=1OQ_XKyYgGnEQHxedZMcSaruPyoHU-CH4&amp;sz=w1280" alt="" loading="lazy" decoding="async">
-            <a class="demo-play" href="https://drive.google.com/file/d/1OQ_XKyYgGnEQHxedZMcSaruPyoHU-CH4/view">&#9654;&#xFE0E; Play demo</a>
-          </div>
-          <figcaption>Mass-balance simulation in Unreal Engine 5. The video plays from Google Drive.</figcaption>
-        </figure>
+        <a class="demo" id="demo" href="https://drive.google.com/file/d/1OQ_XKyYgGnEQHxedZMcSaruPyoHU-CH4/view" target="_blank"><span>▶ Play demo</span></a>
+        <p class="caption">Mass-balance simulation in Unreal Engine 5.</p>
       </div>
-    </article>
+    </div>
 
-    <article class="entry">
-      <p class="when"><time datetime="2024-10">Oct 2024</time>–<time datetime="2026-08">Aug 2026</time></p>
-      <div class="what">
+    <div class="entry">
+      <p class="date">Oct 2024 - Aug 2026</p>
+      <div>
         <h3>Operations Center Student Assistant</h3>
         <p>University of Hawaiʻi Information Technology Services</p>
         <ul>
@@ -141,19 +89,15 @@
           <li>Monitored and diagnosed infrastructure and data center equipment to keep it running.</li>
         </ul>
       </div>
-    </article>
+    </div>
   </section>
 
-  <!-- PROJECTS ===========================================================
-       Newest first. Each project has a short summary, what you did, and a
-       small list of links. Delete any row (stack, github, live) you don't need.
-       ===================================================================== -->
-  <section id="projects" aria-labelledby="projects-title">
-    <h2 id="projects-title"><a class="anchor" href="#projects" aria-label="Link to projects">#</a>projects</h2>
+  <section id="projects">
+    <h2><a href="#projects">#</a>projects</h2>
 
-    <article class="entry">
-      <p class="when"><time datetime="2025-05">May 2025</time></p>
-      <div class="what">
+    <div class="entry">
+      <p class="date">May 2025</p>
+      <div>
         <h3>Da Grindz</h3>
         <p>Web app for finding food and planning meals on the UH Mānoa campus, built by a seven-person team.</p>
         <ul>
@@ -162,17 +106,17 @@
           <li>Shipped the data and map in the first milestone, so the team built the meal planner and nutrition features on real data instead of mocks.</li>
           <li>Wrote REST API routes in TypeScript and Node.js that query PostgreSQL; deployed to Vercel with GitHub Actions CI/CD.</li>
         </ul>
-        <dl class="kv kv--inner">
+        <dl class="info links">
           <div><dt>stack</dt><dd>Next.js, TypeScript, React Bootstrap, PostgreSQL, Prisma</dd></div>
           <div><dt>github</dt><dd><a href="https://github.com/da-grindz/da-grindz">da-grindz/da-grindz</a></dd></div>
           <div><dt>live</dt><dd><a href="https://da-grindz.vercel.app">da-grindz.vercel.app</a></dd></div>
         </dl>
       </div>
-    </article>
+    </div>
 
-    <article class="entry">
-      <p class="when"><time datetime="2025-04">Apr 2025</time></p>
-      <div class="what">
+    <div class="entry">
+      <p class="date">Apr 2025</p>
+      <div>
         <h3>Cloud type classifier</h3>
         <p>Image recognition model that identifies cloud types from sky photos.</p>
         <ul>
@@ -180,38 +124,29 @@
           <li>Built backend services that ingest image uploads along with parsed EXIF metadata and temperature logs.</li>
           <li>Deployed the model on Gemini Enterprise Agent Platform as a real-time inference pipeline.</li>
         </ul>
-        <dl class="kv kv--inner">
+        <dl class="info links">
           <div><dt>stack</dt><dd>Python, PyTorch</dd></div>
-          <!-- Add a GitHub link once the repo is public:
-          <div><dt>github</dt><dd><a href="https://github.com/shadematsumoto/REPO">shadematsumoto/REPO</a></dd></div>
-          -->
         </dl>
       </div>
-    </article>
+    </div>
   </section>
 
-  <!-- EDUCATION ========================================================== -->
-  <section id="education" aria-labelledby="education-title">
-    <h2 id="education-title"><a class="anchor" href="#education" aria-label="Link to education">#</a>education</h2>
+  <section id="education">
+    <h2><a href="#education">#</a>education</h2>
 
-    <article class="entry">
-      <p class="when"><time datetime="2023-08">Aug 2023</time>–<time datetime="2027-12">Dec 2027</time></p>
-      <div class="what">
+    <div class="entry">
+      <p class="date">Aug 2023 - Dec 2027</p>
+      <div>
         <h3>University of Hawaiʻi at Mānoa</h3>
         <p>B.S. in Computer Science, expected December 2027. Minor in Political Science. GPA <b>3.94</b>.</p>
         <p>Coursework: Operating Systems, Software &amp; Hardware Security, Database Management Systems, Data Structures &amp; Algorithms, Design &amp; Analysis of Algorithms, Systems Programming (C, C++, x86).</p>
       </div>
-    </article>
+    </div>
   </section>
 
-  <!-- SKILLS =============================================================
-       One row per group. Keep each list to what you'd be happy to be
-       interviewed on.
-       ===================================================================== -->
-  <section id="skills" aria-labelledby="skills-title">
-    <h2 id="skills-title"><a class="anchor" href="#skills" aria-label="Link to skills">#</a>skills</h2>
-
-    <dl class="kv kv--stack">
+  <section id="skills">
+    <h2><a href="#skills">#</a>skills</h2>
+    <dl class="info skills">
       <div><dt>languages</dt><dd>C++, Python, Java, C#, TypeScript, JavaScript, C, SQL, Bash</dd></div>
       <div><dt>frameworks</dt><dd>PyTorch, NumPy, React, Next.js, Node.js, JUnit</dd></div>
       <div><dt>databases</dt><dd>PostgreSQL, MySQL, Redis</dd></div>
@@ -220,41 +155,37 @@
     </dl>
   </section>
 
-  <!-- LEADERSHIP ========================================================= -->
-  <section id="leadership" aria-labelledby="leadership-title">
-    <h2 id="leadership-title"><a class="anchor" href="#leadership" aria-label="Link to leadership">#</a>leadership</h2>
+  <section id="leadership">
+    <h2><a href="#leadership">#</a>leadership</h2>
 
-    <article class="entry">
-      <p class="when"><time datetime="2024-08">Aug 2024</time>–now</p>
-      <div class="what">
+    <div class="entry">
+      <p class="date">Aug 2024 - now</p>
+      <div>
         <h3>Coding Mentor</h3>
         <p>ACM Programming &amp; Algorithms, Honolulu, HI</p>
         <ul>
-          <li>Lead weekly workshops for <b>10–20</b> students on data structures, algorithms, and software engineering fundamentals, with interactive coding sessions and one-on-one mentoring.</li>
+          <li>Lead weekly workshops for <b>10-20</b> students on data structures, algorithms, and software engineering fundamentals, with interactive coding sessions and one-on-one mentoring.</li>
         </ul>
       </div>
-    </article>
+    </div>
   </section>
 
-  <!-- AWARDS ============================================================= -->
-  <section id="awards" aria-labelledby="awards-title">
-    <h2 id="awards-title"><a class="anchor" href="#awards" aria-label="Link to awards">#</a>awards</h2>
+  <section id="awards">
+    <h2><a href="#awards">#</a>awards</h2>
 
-    <article class="entry">
-      <p class="when"><time datetime="2026">2026</time></p>
-      <div class="what"><h3>Booz Allen Hamilton Scholarship</h3></div>
-    </article>
+    <div class="entry">
+      <p class="date">2026</p>
+      <h3>Booz Allen Hamilton Scholarship</h3>
+    </div>
 
-    <article class="entry">
-      <p class="when"><time datetime="2023">2023</time>–now</p>
-      <div class="what"><h3>Mānoa Academic Merit Scholarship</h3></div>
-    </article>
+    <div class="entry">
+      <p class="date">2023 - now</p>
+      <h3>Mānoa Academic Merit Scholarship</h3>
+    </div>
   </section>
 
-  <!-- FOOTER: the deploy workflow replaces the "build" comment below with
-       the last-updated date and commit. Leave it in place. -->
-  <footer class="foot">
-    <p><!-- build --> <a href="https://github.com/shadematsumoto/shadematsumoto.github.io">Source on GitHub</a>.</p>
+  <footer>
+    <p><!-- build --> <a href="https://github.com/shadematsumoto/shadematsumoto.github.io">Source on GitHub</a></p>
   </footer>
 
 </main>
